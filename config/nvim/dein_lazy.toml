@@ -1,0 +1,27 @@
+[[plugins]]
+repo  = 'Quramy/tsuquyomi'
+on_ft = ['typescript']
+
+# vim-markdown highlighter
+[[plugins]]
+repo = 'preservim/vim-markdown'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+hook_add = '''
+let g:vim_markdown_conceal = 0
+'''
+
+# markdown preview
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app && npm install"'
+
+# auto complicate markdown table
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+
+# カラーコードに着色
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_ft = ['css', 'sass', 'scss']

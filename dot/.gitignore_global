@@ -1,0 +1,18 @@
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail
+._*
+Thumbs.db
+
+# external disks
+.Spotlight-V100
+.Trashes
+
+# vs code
+.vscode
+
+# python
+__pycache__
+*.pyc

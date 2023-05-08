@@ -1,0 +1,24 @@
+[include]
+    path = .gitconfig.local
+[init]
+    defaultbranch = main
+[merge]
+    ff = false
+[pull]
+    ff = only
+    rebase = false
+[fetch]
+    prune = true
+[push]
+    default = current
+[rebase]
+    autostash = true
+    autosquash = true
+[color]
+    ui = auto
+[core]
+    editor = nvim
+    excludesfile = ~/.gitignore_global
+[alias]
+    tree = log --graph --all --date=format-local:'%Y-%m-%d %H:%M:%S' --pretty=format:'%x09%C(auto) %h %Cgreen %ad %C(auto)%d %s %C(cyan)by %C(ul)%an'
+

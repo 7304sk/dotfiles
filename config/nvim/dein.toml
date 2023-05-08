@@ -1,0 +1,168 @@
+# vim-code-dark (VS Code風カラーテーマ)
+[[plugins]]
+repo = 'tomasiser/vim-code-dark'
+
+# coc
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = '0'
+hook_source = 'call coil398#init#coc#hook_source()'
+hook_add = '''
+    let g:coc_global_extensions = [
+        \'coc-actions',
+        \'coc-html',
+        \'coc-css',
+        \'coc-emmet',
+        \'coc-sql',
+        \'coc-sqlfluff',
+        \'coc-diagnostic', 
+        \'coc-eslint', 
+        \'coc-python', 
+        \'coc-git', 
+        \'coc-highlight',
+        \'coc-java', 
+        \'coc-sh', 
+        \'coc-json', 
+        \'coc-lists', 
+        \'coc-markdownlint', 
+        \'coc-pairs', 
+        \'coc-snippets', 
+        \'coc-tsserver', 
+        \'coc-yaml', 
+    \]
+'''
+
+# fern
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+hook_add = '''
+    let g:fern#default_hidden=1
+    let g:fern#renderer#nerdfont#indent_markers=1
+'''
+
+# fern-hijack
+[[plugins]]
+repo = 'lambdalisue/fern-hijack.vim'
+
+# git-status for fern
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+
+# nerdfont for fern
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+hook_add = '''
+  let g:fern#renderer = 'nerdfont'
+'''
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+  augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
+  augroup END
+'''
+
+# fern preview
+[[plugins]]
+repo = 'yuki-yano/fern-preview.vim'
+
+# devicons
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+# TreeSitter
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+
+# TreeSitterの設定変更用
+[[plugins]]
+repo = 'nvim-treesitter/playground'
+
+# quick-scope
+[[plugins]]
+repo = 'unblevable/quick-scope'
+
+# 単語ハイライト
+[[plugins]]
+repo = 'RRethy/vim-illuminate'
+
+# vim-edgemotion
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+
+# fugitive
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# committia
+[[plugins]]
+repo = 'rhysd/committia.vim'
+
+# airline
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+# depends =['tomasiser/vim-code-dark', 'tpope/vim-fugitive']
+hook_add = '''
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#branch#enabled=1
+    let g:airline#extensions#hunks#enabled=0
+    let g:airline_theme = 'codedark'
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_section_a = airline#section#create(['mode', 'crypt'])
+'''
+
+# fzf
+[[plugins]]
+repo = 'junegunn/fzf'
+hook_post_update = './install --all'
+merged = 0
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+# gitgutter
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+    set signcolumn=yes
+    let g:gitgutter_async = 1
+    let g:gitgutter_sign_modified = '%'
+    highlight GitGutterAdd ctermfg=green
+    highlight GitGutterChange ctermfg=yellow
+    highlight GitGutterDelete ctermfg=red
+    highlight GitGutterChangeDelete ctermfg=yellow
+'''
+
+# tcomment
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+hook_add = '''
+    vnoremap ? :'<,'>TComment<CR>
+'''
+
+# Colorize brackets pair
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+        let g:rainbow_active = 1
+'''
+
+# indent line
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+
+# 引数の色を変える
+[[plugins]]
+repo = 'm-demare/hlargs.nvim'
