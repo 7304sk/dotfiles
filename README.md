@@ -1,14 +1,13 @@
-# conf_dotfiles
+# Shoalwave's dotfiles
 
-***Hyper (ターミナル) + fish (シェル) + Neovim (エディタ) = 最強***  
-あなたも幸せになりましょう
+***Hyper (ターミナル) + fish (シェル) + Neovim (エディタ) = 最強***
 
 ```Bash
 cd
-git clone git@github.com:7304sk/conf_dotfiles.git
-cd conf_dotfiles
-vi ./dotfiles/.gitconfig.local  # rewrite your Git user
-git update-index --skip-worktree ./config/fish/config_unique.fish ./dotfiles/.gitconfig.local
+git clone git@github.com:7304sk/dotfiles.git
+cd dotfiles
+vi ./dot/.gitconfig.local  # rewrite your Git user
+git update-index --skip-worktree ./config/fish/config_unique.fish ./dot/.gitconfig.local
 ./install.sh
 ```
 
