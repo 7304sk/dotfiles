@@ -29,7 +29,7 @@ autocmd VimEnter * match FullWidthSpace /　/
 colorscheme codedark
 
 " Start Fern
-autocmd VimEnter * nested Fern . -reveal=% -drawer -toggle -width=40
+" autocmd VimEnter * nested Fern . -reveal=% -drawer -toggle -width=40
 " fern preview
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:auto:toggle)
