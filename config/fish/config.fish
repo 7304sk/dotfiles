@@ -28,3 +28,10 @@ else
     set -xg PATH $HOME/.npm-global/bin $PATH
     alias update='echo -e "\n\e[33m##### Update list of packages. #####\e[m\n" && sudo apt update && echo -e "\n\e[33m##### List of packages is updated. #####\n##### NEXT: Upgrade all packages #####\e[m\n" && sudo apt upgrade && echo -e "\n\e[33m##### All installed packages are upgraded. #####\n##### NEXT: Remove packages that are no longer needed #####\e[m\n" && sudo apt autoremove && echo -e "\n\e[33m##### Packages that are no longer needed for the update are removed. #####\n##### NEXT: Clean up cached files #####\e[m\n" && sudo apt clean && echo -e "\n\e[33m##### all cached deb files are deleted. #####\e[m\n"'
 end
+
+#! set bobthefish
+set -g theme_display_node always
+set -g theme_display_user yes
+set -g theme_display_hostname yes
+set -g theme_newline_cursor yes
+set -g theme_newline_prompt "\e[33m\$\e[m "
