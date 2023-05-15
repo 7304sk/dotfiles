@@ -21,6 +21,7 @@ abbr -a ungz    tar zxvf
 abbr -a bz      tar jcvf
 abbr -a unbz    tar jxvf
 abbr -a dig     dig +noall +answer any
+abbr -a digr    dig -x +noall +answer any
 abbr -a ps      ps aux
 # apt
 abbr -a sai     sudo apt install -y
