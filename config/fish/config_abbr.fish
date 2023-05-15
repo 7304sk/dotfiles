@@ -4,7 +4,8 @@ for a in (abbr --list); abbr --erase $a; end
 ####
 #  set abbreviations
 abbr -a abr     cat ~/.config/fish/config_abbr.fish
-abbr -a ll      ls -alFX
+abbr -a l       ls -CFXa
+abbr -a ll      ls -ahlFX
 abbr -a .       cd ../
 abbr -a ..      cd ../../
 abbr -a ...     cd ../../../
@@ -19,7 +20,8 @@ abbr -a gz      tar zcvf
 abbr -a ungz    tar zxvf
 abbr -a bz      tar jcvf
 abbr -a unbz    tar jxvf
-abbr -a dig     dig any +noall +answer
+abbr -a dig     dig +noall +answer any
+abbr -a ps      ps aux
 # apt
 abbr -a sai     sudo apt install -y
 abbr -a sar     sudo apt remove
