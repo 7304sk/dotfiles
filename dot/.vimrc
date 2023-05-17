@@ -59,8 +59,8 @@ set updatetime=250
 nnoremap ; :
 nnoremap : ;
 " escape
-inoremap <silent> jj <Esc>
-inoremap jf <Esc>:w
+inoremap <silent> jj <Esc>:w<CR>
+inoremap jf <Esc>:wq<CR>
 " increment, decrement
 nnoremap + <C-a>
 nnoremap - <C-x>
