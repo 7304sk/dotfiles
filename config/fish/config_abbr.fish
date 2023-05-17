@@ -48,7 +48,7 @@ abbr -a gckb    git checkout -b
 abbr -a gb      git branch
 abbr -a gcy     git cherry-pick
 abbr -a gd      git diff --color-words --word-diff
-abbr -a gs      git status
+abbr -a gs      git status -s
 abbr -a gss     git stash save
 abbr -a gsp     git stash pop stash@{0}
 abbr -a gsl     git stash list
