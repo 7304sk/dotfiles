@@ -7,7 +7,7 @@ cd
 git clone git@github.com:7304sk/dotfiles.git
 cd dotfiles
 vi ./dot/.gitconfig.local  # rewrite your Git user
-git update-index --skip-worktree ./config/fish/config_unique.fish ./dot/.gitconfig.local
+git update-index --skip-worktree ./config/fish/config_unique__before.fish ./config/fish/config_unique__after.fish ./dot/.gitconfig.local
 ./install.sh
 ```
 

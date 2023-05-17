@@ -16,7 +16,8 @@ abbr -a s       source
 abbr -a c       clear
 abbr -a py      python
 abbr -a e       exit
-abbr -a vr      vi -R
+abbr -a v       vi
+abbr -a vw      view
 abbr -a gz      tar zcvf
 abbr -a ungz    tar zxvf
 abbr -a bz      tar jcvf

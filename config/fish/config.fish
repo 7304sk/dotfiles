@@ -1,5 +1,6 @@
 #! alias
 alias vi='nvim'
+alias view='nvim -R'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -11,7 +12,7 @@ set -xg PYTHONPATH $HOME/__pylib__ $PYTHONPATH
 set -xg N_PREFIX $HOME/.n
 
 #! load configurations
-source $HOME/.config/fish/config_unique.fish
+source $HOME/.config/fish/config_unique__before.fish
 source $HOME/.config/fish/config_abbr.fish
 source $HOME/.config/fish/config_functions.fish
 
@@ -35,3 +36,6 @@ set -g theme_display_user yes
 set -g theme_display_hostname yes
 set -g theme_newline_cursor yes
 set -g theme_newline_prompt "\e[33m\$\e[m "
+
+#! load after configurations
+source $HOME/.config/fish/config_unique__after.fish
