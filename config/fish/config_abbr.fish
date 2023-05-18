@@ -9,7 +9,7 @@ abbr -a ll      ls -ahlFX
 abbr -a .       cd ../
 abbr -a ..      cd ../../
 abbr -a ...     cd ../../../
-abbr -a h       " history --show-time='%Y-%m-%d %H:%M:%S   ' | fzf"
+abbr -a h       pick_history
 abbr -a home    cd $WORK_HOME
 abbr -a wi      which
 abbr -a s       source

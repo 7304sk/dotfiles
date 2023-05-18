@@ -1,3 +1,9 @@
+# Picker to copy from history to clipboard
+function pick_history
+    set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
+end
+
+# Minimize javascript
 function cleanjs
     argparse -n cleanjs 'o/output=' -- $argv
     or return 1
@@ -8,6 +14,7 @@ function cleanjs
     npx terser --compress --mangle -- $argv > $_flag_output
 end
 
+# recursively chmod
 function rcm
     argparse -n rcm 'h/help' 't/type=' 'n/name=' -- $argv
     or return 1
@@ -59,6 +66,7 @@ target directory: $pwd"
     end
 end
 
+# recursively chown
 function rco
     argparse -n rco 'h/help' 't/type=' 'n/name=' -- $argv
     or return 1
