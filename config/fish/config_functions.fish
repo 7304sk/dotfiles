@@ -1,10 +1,28 @@
-# Picker to copy from history to clipboard
+#### fzf 
 function pick_history
-    set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
+    set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf +m | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
 end
 
-# Minimize javascript
-function cleanjs
+function fd
+    set -lu dir $(find * -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) ; and cd $dir
+end
+
+function fl
+    set -lu dir $(find . -type d -maxdepth 1 -not -name '.' | fzf +m) ; and cd $dir
+end
+
+function fbd -d 'cd backwards'
+	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | eval (__fzfcmd) +m --select-1 --exit-0 $FZF_BCD_OPTS | read -l result
+	[ "$result" ]; and cd $result
+	commandline -f repaint
+end
+
+function fco -d "Fuzzy-find and checkout a branch"
+  git branch | grep -v HEAD | string trim | fzf | read -l result; and git checkout "$result"
+end
+
+#### other
+function cleanjs -d "Minimize javascript"
     argparse -n cleanjs 'o/output=' -- $argv
     or return 1
 
@@ -14,8 +32,7 @@ function cleanjs
     npx terser --compress --mangle -- $argv > $_flag_output
 end
 
-# recursively chmod
-function rcm
+function rcm -d "recursively chmod"
     argparse -n rcm 'h/help' 't/type=' 'n/name=' -- $argv
     or return 1
 
@@ -66,8 +83,7 @@ target directory: $pwd"
     end
 end
 
-# recursively chown
-function rco
+function rco -d "recursively chown"
     argparse -n rco 'h/help' 't/type=' 'n/name=' -- $argv
     or return 1
 
