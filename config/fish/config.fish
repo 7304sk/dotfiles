@@ -33,11 +33,13 @@ else
 end
 
 #! set bobthefish
+set -g theme_color_scheme dracula
 set -g theme_display_node always
 set -g theme_display_user yes
 set -g theme_display_hostname yes
 set -g theme_newline_cursor yes
-set -g theme_newline_prompt "\e[33m\$\e[m "
+set -g theme_display_vi yes
+set -g theme_newline_prompt "\e[32m\e[m "
 
 #! load after configurations
 source $HOME/.config/fish/config_unique__after.fish

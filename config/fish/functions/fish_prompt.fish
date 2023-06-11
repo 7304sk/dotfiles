@@ -393,6 +393,11 @@ function __bobthefish_finish_segments -S -d 'Close open prompt segments'
         echo -ns $right_black_arrow_glyph ' '
     end
 
+    set_color $fish_color_autosuggestion
+    echo -n (__bobthefish_cmd_duration)
+    echo -n (__bobthefish_timestamp)
+    set_color normal
+
     if [ "$theme_newline_cursor" = 'yes' ]
         echo -ens "\n"
         set_color $fish_color_autosuggestion
@@ -1130,6 +1135,108 @@ function __bobthefish_prompt_dir -S -a real_pwd -d 'Display a shortened form of 
     __bobthefish_path_segment "$real_pwd"
 end
 
+function __vi_mode_prompt -d 'bobthefish-optimized fish mode indicator'
+    [ "$theme_display_vi" != 'no' ]
+    or return
+
+    [ "$fish_key_bindings" = 'fish_vi_key_bindings' \
+        -o "$fish_key_bindings" = 'hybrid_bindings' \
+        -o "$fish_key_bindings" = 'fish_hybrid_key_bindings' \
+        -o "$theme_display_vi" = 'yes' ]
+    or return
+
+    __bobthefish_colors $theme_color_scheme
+
+    type -q bobthefish_colors
+    and bobthefish_colors
+
+    set_color normal # clear out anything bold or underline...
+
+    switch $fish_bind_mode
+        case default
+            set_color -b $color_vi_mode_default
+            echo -n '   '
+        case insert
+            set_color -b $color_vi_mode_insert
+            echo -n '   '
+        case replace_one replace-one
+            set_color -b $color_vi_mode_insert
+            echo -n '   '
+        case visual
+            set_color -b $color_vi_mode_visual
+            echo -n '   '
+    end
+
+    set_color normal
+end
+
+# right_prompt
+function __bobthefish_cmd_duration -S -d 'Show command duration'
+    [ "$theme_display_cmd_duration" = "no" ]
+    and return
+
+    [ -z "$CMD_DURATION" -o "$CMD_DURATION" -lt 100 ]
+    and return
+
+    if [ "$CMD_DURATION" -lt 5000 ]
+        echo -ns $CMD_DURATION 'ms'
+    else if [ "$CMD_DURATION" -lt 60000 ]
+        __bobthefish_pretty_ms $CMD_DURATION s
+    else if [ "$CMD_DURATION" -lt 3600000 ]
+        set_color $fish_color_error
+        __bobthefish_pretty_ms $CMD_DURATION m
+    else
+        set_color $fish_color_error
+        __bobthefish_pretty_ms $CMD_DURATION h
+    end
+
+    set_color $fish_color_normal
+    set_color $fish_color_autosuggestion
+
+    [ "$theme_display_date" = "no" ]
+    or echo -ns ' ' $__bobthefish_left_arrow_glyph
+end
+
+function __bobthefish_pretty_ms -S -a ms -a interval -d 'Millisecond formatting for humans'
+    set -l interval_ms
+    set -l scale 1
+
+    switch $interval
+        case s
+            set interval_ms 1000
+        case m
+            set interval_ms 60000
+        case h
+            set interval_ms 3600000
+            set scale 2
+    end
+
+    switch $FISH_VERSION
+        case 2.0.\* 2.1.\* 2.2.\* 2.3.\*
+            # Fish 2.3 and lower doesn't know about the -s argument to math.
+            math "scale=$scale;$ms/$interval_ms" | string replace -r '\\.?0*$' $interval
+        case 2.\*
+            # Fish 2.x always returned a float when given the -s argument.
+            math -s$scale "$ms/$interval_ms" | string replace -r '\\.?0*$' $interval
+        case \*
+            math -s$scale "$ms/$interval_ms"
+            echo -ns $interval
+    end
+end
+
+function __bobthefish_timestamp -S -d 'Show the current timestamp'
+    [ "$theme_display_date" = "no" ]
+    and return
+
+    set -q theme_date_format
+    # or set -l theme_date_format "+%c"
+    or set -l theme_date_format "+[%T]"
+
+    echo -n ' '
+    set -q theme_date_timezone
+        and env TZ="$theme_date_timezone" date $theme_date_format
+        or echo -n (date $theme_date_format)
+end
 
 # ==============================
 # Apply theme
@@ -1138,6 +1245,10 @@ end
 function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
     # Save the last status for later (do this before anything else)
     set -l last_status $status
+
+    # new line before fish_mode_prompt
+    echo
+    __vi_mode_prompt
 
     # Use a simple prompt on dumb terminals.
     if [ "$TERM" = 'dumb' ]

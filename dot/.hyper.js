@@ -31,7 +31,7 @@ module.exports = {
         foregroundColor: '#fff',
         // terminal background color
         // opacity is only supported on macOS
-        backgroundColor: '#000',
+        backgroundColor: '#161e26',
         // terminal selection color
         selectionColor: 'rgba(248,28,229,0.3)',
         // border color (window, tabs)
@@ -131,7 +131,7 @@ module.exports = {
         // set to true to preserve working directory when creating splits or tabs
         preserveCWD: true,
         // for advanced config flags please refer to https://hyper.is/#cfg
-        opacity: 0.9,
+        opacity: 0.95,
         // hyperterm-overlay
         overlay: {
             alwaysOnTop: true,
@@ -158,7 +158,7 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [
-        "hyper-material-theme",
+        // "hyper-material-theme",
         "hyper-opacity",
         "hyper-tab-icons-plus",
         "hyper-statusline",

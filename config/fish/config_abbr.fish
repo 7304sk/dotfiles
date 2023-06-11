@@ -36,13 +36,13 @@ abbr -a nb      nodebrew
 # git
 abbr -a g       git
 abbr -a gi      git init
-abbr -a ga      git add .
+abbr -a ga      git add -A
 abbr -a gc      git commit
 abbr -a gp      git push
 abbr -a gf      git fetch --prune
 abbr -a gpl     git pull origin
 abbr -a gm      git merge
-abbr -a gr      git reset --hard
+abbr -a gr      git reset
 abbr -a gck     git checkout
 abbr -a gckb    git checkout -b
 abbr -a gb      git branch

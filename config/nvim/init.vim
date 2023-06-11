@@ -23,10 +23,12 @@ filetype plugin indent on
 syntax enable
 
 " 全角スペースを強調
-autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
-autocmd VimEnter * match FullWidthSpace /　/
-" color theme
-colorscheme codedark
+if !exists('g:vscode')
+    autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
+    autocmd VimEnter * match FullWidthSpace /　/
+    " color theme
+    colorscheme codedark
+endif
 
 " Start Fern
 " autocmd VimEnter * nested Fern . -reveal=% -drawer -toggle -width=40
