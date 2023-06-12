@@ -3,22 +3,67 @@ function pick_history
     set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf +m | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
 end
 
-function fd
-    set -lu dir $(find * -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) ; and cd $dir
+function fd -d 'cd forwards'
+    argparse -n fd 'a/all' 'e/exclude=+' -- $argv
+
+    [ "$argv[1]" ]; and set -l depth $argv[1]
+    or set -l depth 1
+
+    set -lu result $(
+        find . -maxdepth $depth -type d -not -name '.' 2> /dev/null | 
+        if set -q _flag_all
+            grep . #pass
+        else
+            grep -v "/\."
+        end |
+        if set -q _flag_exclude
+            set -lu exc_str "grep -v"
+            for e in $_flag_exclude
+                set exc_str (string join ' ' $exc_str "\-e $e")
+            end
+            eval $exc_str
+        else
+            grep . #pass
+        end |
+        fzf +m)
+
+    if test -n "$result"
+        set -lu from (pwd)
+        cd $result
+        set -lu to (pwd)
+        echo "FROM: $from"
+        echo "TO:   $to"
+    else
+        echo "Canceled."
+        return 1
+    end
 end
 
-function fl
-    set -lu dir $(find . -type d -maxdepth 1 -not -name '.' | fzf +m) ; and cd $dir
-end
-
-function fbd -d 'cd backwards'
+function bd -d 'cd backwards'
 	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | eval (__fzfcmd) +m --select-1 --exit-0 $FZF_BCD_OPTS | read -l result
-	[ "$result" ]; and cd $result
-	commandline -f repaint
+    if test -n "$result"
+        set -lu from (pwd)
+        cd $result
+        set -lu to (pwd)
+        echo "FROM: $from"
+        echo "TO:   $to"
+    else
+        echo "Canceled."
+        return 1
+    end
 end
 
-function fco -d "Fuzzy-find and checkout a branch"
-  git branch | grep -v HEAD | string trim | fzf | read -l result; and git checkout "$result"
+function fb -d "Fuzzy-find and switch a branch"
+    set -l __branches (git branch | grep -v "^\*" | grep -v HEAD | string trim)
+    if [ "$__branches" = "" ]
+        echo "Here is no other branches."
+        return 1
+    else
+        for __branch in $__branches
+            echo $__branch
+        end | fzf | read -l __result
+        git switch "$__result"
+    end
 end
 
 #### other

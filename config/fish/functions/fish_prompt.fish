@@ -393,11 +393,6 @@ function __bobthefish_finish_segments -S -d 'Close open prompt segments'
         echo -ns $right_black_arrow_glyph ' '
     end
 
-    set_color $fish_color_autosuggestion
-    echo -n (__bobthefish_cmd_duration)
-    echo -n (__bobthefish_timestamp)
-    set_color normal
-
     if [ "$theme_newline_cursor" = 'yes' ]
         echo -ens "\n"
         set_color $fish_color_autosuggestion
@@ -1172,6 +1167,9 @@ end
 
 # right_prompt
 function __bobthefish_cmd_duration -S -d 'Show command duration'
+    [ "$theme_display_date" = "no" ]
+    or echo -ns ' ' $__bobthefish_left_arrow_glyph
+
     [ "$theme_display_cmd_duration" = "no" ]
     and return
 
@@ -1192,9 +1190,6 @@ function __bobthefish_cmd_duration -S -d 'Show command duration'
 
     set_color $fish_color_normal
     set_color $fish_color_autosuggestion
-
-    [ "$theme_display_date" = "no" ]
-    or echo -ns ' ' $__bobthefish_left_arrow_glyph
 end
 
 function __bobthefish_pretty_ms -S -a ms -a interval -d 'Millisecond formatting for humans'
@@ -1245,6 +1240,12 @@ end
 function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
     # Save the last status for later (do this before anything else)
     set -l last_status $status
+
+    # timestamp
+    set_color $fish_color_autosuggestion
+    echo -n (__bobthefish_timestamp)
+    echo -n (__bobthefish_cmd_duration)
+    set_color normal
 
     # new line before fish_mode_prompt
     echo

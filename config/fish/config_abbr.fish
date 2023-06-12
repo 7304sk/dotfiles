@@ -10,6 +10,7 @@ abbr -a .       cd ../
 abbr -a ..      cd ../../
 abbr -a ...     cd ../../../
 abbr -a h       pick_history
+abbr -a fda     fd --all 99
 abbr -a home    cd $WORK_HOME
 abbr -a wi      which
 abbr -a s       source
@@ -42,9 +43,12 @@ abbr -a gp      git push
 abbr -a gf      git fetch --prune
 abbr -a gpl     git pull origin
 abbr -a gm      git merge
-abbr -a gr      git reset
-abbr -a gck     git checkout
-abbr -a gckb    git checkout -b
+abbr -a grt     git reset
+# abbr -a gck     git checkout
+# abbr -a gckb    git checkout -b
+abbr -a gsw     git switch
+abbr -a gsc     git switch -c
+abbr -a gr      git restore
 abbr -a gb      git branch
 abbr -a gcy     git cherry-pick
 abbr -a gd      git diff --color-words --word-diff
