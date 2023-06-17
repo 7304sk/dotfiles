@@ -4,7 +4,7 @@ for a in (abbr --list); abbr --erase $a; end
 ####
 #  set abbreviations
 abbr -a abr     cat ~/.config/fish/config_abbr.fish
-abbr -a l       ls -CFXa
+abbr -a l       ls -FXa
 abbr -a ll      ls -ahlFX
 abbr -a .       cd ../
 abbr -a ..      cd ../../
@@ -33,6 +33,7 @@ abbr -a sar     sudo apt remove
 abbr -a sas     sudo apt search
 # mac
 abbr -a hb      brew
+abbr -a hbu     'brew update && brew upgrade'
 abbr -a nb      nodebrew
 # git
 abbr -a g       git

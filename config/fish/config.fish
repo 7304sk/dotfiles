@@ -4,6 +4,7 @@ alias view='nvim -R'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias ls='lsd'
 
 #! global variables
 set -xg LANG ja_JP.UTF-8
@@ -15,9 +16,6 @@ set -xg N_PREFIX $HOME/.n
 source $HOME/.config/fish/config_unique__before.fish
 source $HOME/.config/fish/config_abbr.fish
 source $HOME/.config/fish/config_functions.fish
-
-#! enable vi mode
-fish_vi_key_bindings
 
 #! Configuration by OS
 if test (uname -s) = Darwin
@@ -40,6 +38,9 @@ set -g theme_newline_cursor yes
 set -g theme_display_vi yes
 set -g theme_date_format "+[%H:%M:%S]"
 set -g theme_newline_prompt "\e[32m\e[m "
+
+#! setting of fzf
+set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse --color=bg+:#3c3836,spinner:#fb4934,hl:#fb4934,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#ff6e5e'
 
 #! load after configurations
 source $HOME/.config/fish/config_unique__after.fish

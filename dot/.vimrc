@@ -146,8 +146,7 @@ highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 """"" fzf.vim
-" Ctrl+pでファイル検索を開く
-" git管理されていれば:GFiles、そうでなければ:Filesを実行する
+" Space cでファイル名検索を開く。 git管理されていれば:GFiles、そうでなければ:Filesを実行する
 fun! FzfOmniFiles()
   let is_git = system('git status')
   if v:shell_error
@@ -156,9 +155,8 @@ fun! FzfOmniFiles()
     :GFiles
   endif
 endfun
-nnoremap <C-p> :call FzfOmniFiles()<CR>
-" Ctrl+gで複数ファイルの文字列検索を開く
-" <S-?>でプレビューを表示/非表示する
+nnoremap <Leader>c :call FzfOmniFiles()<CR>
+" Ctrl+gで複数ファイルの文字列検索を開く。 <?>でプレビューを表示/非表示する
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
@@ -166,14 +164,12 @@ command! -bang -nargs=* Rg
 \ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
 \ <bang>0)
 nnoremap <C-g> :Rg<CR>
-" Space rでカーソル位置の単語をファイル検索する
+" Space rでカーソル位置の単語をファイル間で文字列検索する
 nnoremap <Leader>r vawy:Rg <C-R>"<CR>
-" (Visual) Ctrl+gで選択した単語をファイル検索する
-xnoremap <C-g> y:Rg <C-R>"<CR>
 " Space fで開いているファイルの文字列検索を開く
 nnoremap <Leader>f :BLines<CR>
-" Space cでコミット履歴検索を開く
-nnoremap <Leader>c :Commits<CR>
+" (Visual) Space fで選択した単語をファイル間で文字列検索する
+xnoremap <Leader>f y:Rg <C-R>"<CR>
 """"" edgemotion
 " ブロック移動（縦方向）
 nnoremap <Leader>] <Plug>(edgemotion-j)

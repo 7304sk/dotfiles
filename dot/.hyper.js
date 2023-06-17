@@ -150,6 +150,10 @@ module.exports = {
             tray: true,
             unique: true
         },
+        // hyperBorder
+        hyperBorder: {
+            borderColors: ['#5DF981','#8FE8FC'],
+        },
     },
     // a list of plugins to fetch and install from npm
     // format: [@org/]project[#version]
@@ -159,6 +163,7 @@ module.exports = {
     //   `project#1.0.1`
     plugins: [
         // "hyper-material-theme",
+        "hyper-dracula",
         "hyper-opacity",
         "hyper-tab-icons-plus",
         "hyper-statusline",
