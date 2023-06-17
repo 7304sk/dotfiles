@@ -1,5 +1,5 @@
 #### fzf 
-function pick_history
+function thistory
     set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf +m | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
 end
 

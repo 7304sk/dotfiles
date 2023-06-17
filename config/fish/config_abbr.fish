@@ -5,11 +5,12 @@ for a in (abbr --list); abbr --erase $a; end
 #  set abbreviations
 abbr -a abr     cat ~/.config/fish/config_abbr.fish
 abbr -a l       ls -FXa
-abbr -a ll      ls -ahlFX
+abbr -a ll      ls -ahlFX --date=relative
+abbr -a lt      ls -ahlFX --date=relative --ignore-glob=.git --tree
 abbr -a .       cd ../
 abbr -a ..      cd ../../
 abbr -a ...     cd ../../../
-abbr -a h       pick_history
+abbr -a h       thistory
 abbr -a fda     fd --all 99
 abbr -a home    cd $WORK_HOME
 abbr -a wi      which
