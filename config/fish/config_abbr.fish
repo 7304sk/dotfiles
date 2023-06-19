@@ -4,9 +4,9 @@ for a in (abbr --list); abbr --erase $a; end
 ####
 #  set abbreviations
 abbr -a abr     cat ~/.config/fish/config_abbr.fish
-abbr -a l       ls -FXa
-abbr -a ll      ls -ahlFX --date=relative
-abbr -a lt      ls -ahlFX --date=relative --ignore-glob=.git --tree
+abbr -a l       ls -Fa
+abbr -a ll      ls -alFgx
+abbr -a lt      ls -alFgx --ignore-glob=.git --tree
 abbr -a .       cd ../
 abbr -a ..      cd ../../
 abbr -a ...     cd ../../../
