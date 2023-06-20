@@ -168,9 +168,11 @@ module.exports = {
         "hyper-tab-icons-plus",
         "hyper-statusline",
         "hyper-search",
+        "gitrocket",
         "hyperlinks",
         "hyperterm-overlay",
-        "hyperborder"
+        "hyperborder",
+        "hyper-hilight-active-pane",
     ],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here
