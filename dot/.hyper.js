@@ -172,7 +172,7 @@ module.exports = {
         "hyperlinks",
         "hyperterm-overlay",
         "hyperborder",
-        "hyper-hilight-active-pane",
+        "hyper-highlight-active-pane",
     ],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here
