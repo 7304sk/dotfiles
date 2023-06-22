@@ -11,6 +11,10 @@ set -xg LANG ja_JP.UTF-8
 set -xg GREP_OPTIONS '--color=auto'
 set -xg PYTHONPATH $HOME/__pylib__ $PYTHONPATH
 set -xg N_PREFIX $HOME/.n
+set -xg RUNEWIDTH_EASTASIAN 0
+set -xg FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
+set -xg FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
+set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse --color=bg+:#3c3836,spinner:#fb4934,hl:#fb4934,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#ff6e5e'
 
 #! load configurations
 source $HOME/.config/fish/config_unique__before.fish
@@ -38,9 +42,6 @@ set -g theme_newline_cursor yes
 set -g theme_display_vi yes
 set -g theme_date_format "+[%H:%M:%S]"
 set -g theme_newline_prompt "\e[32m\e[m "
-
-#! setting of fzf
-set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse --color=bg+:#3c3836,spinner:#fb4934,hl:#fb4934,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#ff6e5e'
 
 #! load after configurations
 source $HOME/.config/fish/config_unique__after.fish

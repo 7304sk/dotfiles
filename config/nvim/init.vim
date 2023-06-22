@@ -60,7 +60,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " fzf
-let g:fzf_preview_window = ['right,50%', 'ctrl-/']
+let g:fzf_preview_window = ['up,60%', 'ctrl-/']
 
 " Committia
 let g:committia_hooks = {}

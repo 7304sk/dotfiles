@@ -159,9 +159,9 @@ nnoremap <Leader>c :call FzfOmniFiles()<CR>
 " Space rでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
-\ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
-\ <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
-\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
+\ 'rg --column --line-number --hidden --follow --ignore-case --no-heading --color=always --glob "!.git/*" '.shellescape(<q-args>), 1,
+\ <bang>1 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
+\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'up:60%:hidden', '?'),
 \ <bang>0)
 nnoremap <Leader>r :Rg<CR>
 " Space fで開いているファイルの文字列検索を開く
