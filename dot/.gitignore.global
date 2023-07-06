@@ -10,8 +10,10 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# vs code
+# editors meta data
 .vscode
+.idea
+.vim
 
 # python
 __pycache__
