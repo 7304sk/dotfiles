@@ -1,7 +1,7 @@
 {
     "suggest.noselect": true,
     "suggest.preferCompleteThanJumpPlaceholder": true,
-    "java.compile.nullAnalysis.mode": "automatic",
+    "java.compile.nullAnalysis.mode": "disabled",
     "languageserver": {
         "clangd": {
             "command": "clangd",
