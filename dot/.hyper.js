@@ -162,13 +162,11 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [
-        // "hyper-material-theme",
         "hyper-dracula",
         "hyper-opacity",
         "hyper-tab-icons-plus",
         "hyper-statusline",
         "hyper-search",
-        "gitrocket",
         "hyperlinks",
         "hyperterm-overlay",
         "hyperborder",
