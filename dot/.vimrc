@@ -155,7 +155,7 @@ nnoremap <Leader>ga :Gwrite<CR>
 " git commit
 nnoremap <Leader>gc :G commit<CR>
 " git push
-nnoremap <Leader>gp :G git push<CR>
+nnoremap <Leader>gp :G push<CR>
 " git fetch
 nnoremap <Leader>gf :G fetch --prune<CR>
 " git branch
