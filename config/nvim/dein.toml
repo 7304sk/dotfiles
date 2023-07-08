@@ -109,7 +109,6 @@ repo = 'rhysd/committia.vim'
 # airline
 [[plugins]]
 repo = 'vim-airline/vim-airline'
-# depends =['tomasiser/vim-code-dark', 'tpope/vim-fugitive']
 hook_add = '''
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
@@ -152,17 +151,27 @@ hook_add = '''
     vnoremap ? :'<,'>TComment<CR>
 '''
 
-# Colorize brackets pair
-[[plugins]]
-repo = 'luochen1990/rainbow'
-hook_add = '''
-        let g:rainbow_active = 1
-'''
-
 # indent line
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
+hook_add = '''
+lua << EOF
+require("indent_blankline").setup {
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+    show_current_context = true,
+    show_current_context_start = true,
+}
+EOF
+'''
 
-# 引数の色を変える
+# Colorize brackets pair on TreeSitter
 [[plugins]]
-repo = 'm-demare/hlargs.nvim'
+repo = 'HiPhish/nvim-ts-rainbow2'
+

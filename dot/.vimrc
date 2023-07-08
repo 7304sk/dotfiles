@@ -53,6 +53,19 @@ set signcolumn=yes
 let mapleader = "\<Space>"
 "" 反映時間を短くする(デフォルトは4000ms)
 set updatetime=250
+" checks if your terminal has 24-bit color support
+if has("termguicolors")
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
+" 特殊文字を表示
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+" カーソル形状をモードで変更（使用するターミナル依存）
+let &t_SI .= "\e[6 q"
+let &t_EI .= "\e[2 q"
+let &t_SR .= "\e[4 q"
 
 """""""""" keymap
 " : Swap colon and semicolon

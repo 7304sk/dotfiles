@@ -24,6 +24,12 @@ syntax enable
 
 " 全角スペースを強調
 if !exists('g:vscode')
+    autocmd Colorscheme * highlight IndentBlanklineIndent1 guifg=#662121 
+    autocmd Colorscheme * highlight IndentBlanklineIndent2 guifg=#767621
+    autocmd Colorscheme * highlight IndentBlanklineIndent3 guifg=#216631 
+    autocmd Colorscheme * highlight IndentBlanklineIndent4 guifg=#325a5e 
+    autocmd Colorscheme * highlight IndentBlanklineIndent5 guifg=#324b7b
+    autocmd Colorscheme * highlight IndentBlanklineIndent6 guifg=#562155
     autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
     autocmd VimEnter * match FullWidthSpace /　/
     " color theme
@@ -49,13 +55,18 @@ augroup END
 " markdown は conceal の設定が気に食わないのでオフにする
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
+    ensure_installed = 'all',
     highlight = {
         enable = true,
         disable = {
             'markdown'
         }
     },
-    ensure_installed = 'all'
+    rainbow = {
+        enable = true,
+        query = 'rainbow-parens',
+        strategy = require('ts-rainbow').strategy.global,
+    }
 }
 EOF
 
