@@ -101,8 +101,8 @@ nnoremap <Leader>s <C-u>
 nnoremap <Leader>z :undo<CR>
 nnoremap <Leader>y :redo<CR>
 " カーソルが当たっている単語をハイライト
-nnoremap <silent> <Leader>g :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <Leader>fh :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
+nnoremap <silent> <Leader>fc :<C-u>nohlsearch<CR><C-l>
 " バッファ移動
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>
@@ -148,18 +148,38 @@ vnoremap mt :'<,'>MakeTable
 vnoremap tm :'<,'>MakeTable!
 nnoremap <Leader>t :UnmakeTable
 """"" git
+" git status
+nnoremap <Leader>gs :G<CR>
+" git add
+nnoremap <Leader>ga :Gwrite<CR>
+" git commit
+nnoremap <Leader>gc :G commit<CR>
+" git push
+nnoremap <Leader>gp :G git push<CR>
+" git fetch
+nnoremap <Leader>gf :G fetch --prune<CR>
+" git branch
+nnoremap <Leader>gb :G! -p branch -a<CR>
+" git diff
+nnoremap <Leader>gd :Gdiffsplit 
+" git switch
+nnoremap <Leader>gw :GRead 
+" git blame
+nnoremap <Leader>gm :G blame<CR>
+" git log
+nnoremap <Leader>gl :G! tree<CR>
 " 直前のgit変更箇所へ移動する
-nnoremap <Leader>i :GitGutterPrevHunk<CR>
+nnoremap <Leader>gk :GitGutterPrevHunk<CR>
 " 次のgit変更箇所へ移動する
-nnoremap <Leader>o :GitGutterNextHunk<CR>
+nnoremap <Leader>gj :GitGutterNextHunk<CR>
 " git diffをハイライトする
-nnoremap <Leader>u :GitGutterLineHighlightsToggle<CR>
+nnoremap <Leader>gh :GitGutterLineHighlightsToggle<CR>
 " Gitguuter記号の色を変更する
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 """"" fzf.vim
-" Space cでファイル名検索を開く。 git管理されていれば:GFiles、そうでなければ:Filesを実行する
+" Space fnでファイル名検索を開く。 git管理されていれば:GFiles、そうでなければ:Filesを実行する
 fun! FzfOmniFiles()
   let is_git = system('git status')
   if v:shell_error
@@ -168,17 +188,17 @@ fun! FzfOmniFiles()
     :GFiles
   endif
 endfun
-nnoremap <Leader>c :call FzfOmniFiles()<CR>
-" Space rでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
+nnoremap <Leader>fn :call FzfOmniFiles()<CR>
+" Space faでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \ 'rg --column --line-number --hidden --follow --ignore-case --no-heading --color=always --glob "!.git/*" '.shellescape(<q-args>), 1,
 \ <bang>1 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
 \ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'up:60%:hidden', '?'),
 \ <bang>0)
-nnoremap <Leader>r :Rg<CR>
-" Space fで開いているファイルの文字列検索を開く
-nnoremap <Leader>f :BLines<CR>
+nnoremap <Leader>fa :Rg<CR>
+" Space ffで開いているファイルの文字列検索を開く
+nnoremap <Leader>ff :BLines<CR>
 " (Visual) Space fで選択した単語をファイル間で文字列検索する
 xnoremap <Leader>f y:Rg <C-R>"<CR>
 """"" edgemotion
