@@ -66,6 +66,16 @@ function fb -d "Fuzzy-find and switch a branch"
     end
 end
 
+function rep -d "find ghq repositories"
+    set -l __src $(ghq list | fzf --preview "ls -alFgx $(ghq root)/{}")
+    if test -n $__src
+        cd "$(ghq root)/$__src"
+    else
+        echo "Canceled."
+        return 1
+    end
+end
+
 #### other
 function cleanjs -d "Minimize javascript"
     argparse -n cleanjs 'o/output=' -- $argv

@@ -40,6 +40,7 @@ repo = 'lambdalisue/fern.vim'
 hook_add = '''
     let g:fern#default_hidden=1
     let g:fern#renderer#nerdfont#indent_markers=1
+    let g:fern#default_exclude='.DS_Store'
 '''
 
 # fern-hijack

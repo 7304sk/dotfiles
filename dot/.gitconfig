@@ -21,4 +21,6 @@
     excludesfile = ~/.gitignore.global
 [alias]
     tree = log --graph --all --date=format-local:'%Y-%m-%d %H:%M:%S' --pretty=format:'%x09%C(auto) %h %Cgreen %ad %C(auto)%d %s %C(cyan)by %C(ul)%an'
+[ghq]
+    root = ~/repositories
 

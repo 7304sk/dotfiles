@@ -14,7 +14,11 @@ set -xg N_PREFIX $HOME/.n
 set -xg RUNEWIDTH_EASTASIAN 0
 set -xg FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 set -xg FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
-set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse --color=bg+:#3c3836,spinner:#fb4934,hl:#fb4934,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#ff6e5e'
+set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse
+     --color=fg:#d0d0d0,hl:#d1cf75
+     --color=fg+:#d0d0d0,hl+:#7ddef1
+     --color=info:#87afb7,prompt:#cf6f72,pointer:#7ddef1
+     --color=marker:#ad95c4,spinner:#b7ba7e,header:#D39B76'
 
 #! load configurations
 source $HOME/.config/fish/config_unique__before.fish
