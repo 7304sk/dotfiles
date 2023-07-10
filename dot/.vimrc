@@ -67,6 +67,9 @@ let &t_SI .= "\e[6 q"
 let &t_EI .= "\e[2 q"
 let &t_SR .= "\e[4 q"
 
+" ;s で置換コマンドを展開
+cabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s//gc<Left><Left><Left>" : 's'
+
 """""""""" keymap
 " : Swap colon and semicolon
 nnoremap ; :
@@ -100,9 +103,8 @@ nnoremap <Leader>s <C-u>
 " undo, redo
 nnoremap <Leader>z :undo<CR>
 nnoremap <Leader>y :redo<CR>
-" カーソルが当たっている単語をハイライト
-nnoremap <silent> <Leader>fh :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
-nnoremap <silent> <Leader>fc :<C-u>nohlsearch<CR><C-l>
+" 検索を解除
+nnoremap <silent> <Leader>c :<C-u>nohlsearch<CR><C-l>
 " バッファ移動
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>
@@ -189,6 +191,7 @@ fun! FzfOmniFiles()
   endif
 endfun
 nnoremap <Leader>fn :call FzfOmniFiles()<CR>
+cabbrev fn call FzfOmniFiles()
 " Space faでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
@@ -197,8 +200,10 @@ command! -bang -nargs=* Rg
 \ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'up:60%:hidden', '?'),
 \ <bang>0)
 nnoremap <Leader>fa :Rg<CR>
-" Space ffで開いているファイルの文字列検索を開く
+cabbrev fa execute ":Rg"
+" Space fで開いているファイルの文字列検索を開く
 nnoremap <Leader>ff :BLines<CR>
+cabbrev f execute ":BLines"
 " (Visual) Space fで選択した単語をファイル間で文字列検索する
 xnoremap <Leader>f y:Rg <C-R>"<CR>
 """"" edgemotion
