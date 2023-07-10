@@ -46,10 +46,8 @@ abbr -a gf      git fetch --prune
 abbr -a gpl     git pull origin
 abbr -a gm      git merge
 abbr -a grt     git reset
-# abbr -a gck     git checkout
-# abbr -a gckb    git checkout -b
-abbr -a gsw     git switch
-abbr -a gsc     git switch -c
+abbr -a gk      git checkout
+abbr -a gw      git switch
 abbr -a gr      git restore
 abbr -a gb      git branch
 abbr -a gcy     git cherry-pick
