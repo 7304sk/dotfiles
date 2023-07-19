@@ -1,7 +1,3 @@
-[[plugins]]
-repo  = 'Quramy/tsuquyomi'
-on_ft = ['typescript']
-
 # vim-markdown highlighter
 [[plugins]]
 repo = 'preservim/vim-markdown'

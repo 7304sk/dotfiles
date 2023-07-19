@@ -24,10 +24,10 @@ syntax enable
 
 " 全角スペースを強調
 if !exists('g:vscode')
-    autocmd Colorscheme * highlight IndentBlanklineIndent1 guifg=#662121 
+    autocmd Colorscheme * highlight IndentBlanklineIndent1 guifg=#662121
     autocmd Colorscheme * highlight IndentBlanklineIndent2 guifg=#767621
-    autocmd Colorscheme * highlight IndentBlanklineIndent3 guifg=#216631 
-    autocmd Colorscheme * highlight IndentBlanklineIndent4 guifg=#325a5e 
+    autocmd Colorscheme * highlight IndentBlanklineIndent3 guifg=#216631
+    autocmd Colorscheme * highlight IndentBlanklineIndent4 guifg=#325a5e
     autocmd Colorscheme * highlight IndentBlanklineIndent5 guifg=#324b7b
     autocmd Colorscheme * highlight IndentBlanklineIndent6 guifg=#562155
     autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
@@ -36,12 +36,10 @@ if !exists('g:vscode')
     colorscheme codedark
 endif
 
-" Start Fern
-" autocmd VimEnter * nested Fern . -reveal=% -drawer -toggle -width=40
-" fern preview
+" Fern
+" preview
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:auto:toggle)
-  "nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
   nmap <silent> <buffer> <Space>d <Plug>(fern-action-preview:scroll:down:half)
   nmap <silent> <buffer> <Space>s <Plug>(fern-action-preview:scroll:up:half)
 endfunction
@@ -54,20 +52,22 @@ augroup END
 " TreeSitter
 " markdown は conceal の設定が気に食わないのでオフにする
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = 'all',
-    highlight = {
-        enable = true,
-        disable = {
-            'markdown'
+if vim.fn.exists("g:vscode") ~= 1 then
+    require'nvim-treesitter.configs'.setup {
+        ensure_installed = 'all',
+        highlight = {
+            enable = true,
+            disable = {
+                'markdown'
+            }
+        },
+        rainbow = {
+            enable = true,
+            query = 'rainbow-parens',
+            strategy = require('ts-rainbow').strategy.global,
         }
-    },
-    rainbow = {
-        enable = true,
-        query = 'rainbow-parens',
-        strategy = require('ts-rainbow').strategy.global,
     }
-}
+end
 EOF
 
 " fzf

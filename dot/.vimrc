@@ -60,7 +60,7 @@ if has("termguicolors")
 endif
 " 特殊文字を表示
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
 
 " カーソル形状をモードで変更（使用するターミナル依存）
 let &t_SI .= "\e[6 q"
