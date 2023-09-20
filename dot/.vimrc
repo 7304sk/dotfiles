@@ -94,9 +94,8 @@ nnoremap <Leader>6 ^
 xnoremap <Leader>6 ^
 nnoremap <Leader>8 *
 xnoremap <Leader>8 *
-" 大きい数字
-nnoremap <Leader>a 20
-xnoremap <Leader>a 20
+" 全選択
+nnoremap <Leader>a ggVG
 " scroll
 nnoremap <Leader>d <C-d>
 nnoremap <Leader>s <C-u>
