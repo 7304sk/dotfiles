@@ -211,4 +211,3 @@ nnoremap <Leader>] <Plug>(edgemotion-j)
 xnoremap <Leader>] <Plug>(edgemotion-j)
 nnoremap <Leader>[ <Plug>(edgemotion-k)
 xnoremap <Leader>[ <Plug>(edgemotion-k)
-

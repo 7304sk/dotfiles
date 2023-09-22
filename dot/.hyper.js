@@ -31,7 +31,7 @@ module.exports = {
         foregroundColor: '#fff',
         // terminal background color
         // opacity is only supported on macOS
-        backgroundColor: '#161e26',
+        backgroundColor: 'rgba(22, 30, 38, 0.8)',
         // terminal selection color
         selectionColor: 'rgba(248,28,229,0.3)',
         // border color (window, tabs)
@@ -131,7 +131,6 @@ module.exports = {
         // set to true to preserve working directory when creating splits or tabs
         preserveCWD: true,
         // for advanced config flags please refer to https://hyper.is/#cfg
-        opacity: 0.95,
         // hyperterm-overlay
         overlay: {
             alwaysOnTop: true,
@@ -150,10 +149,6 @@ module.exports = {
             tray: true,
             unique: true
         },
-        // hyperBorder
-        hyperBorder: {
-            borderColors: ['#5DF981','#8FE8FC'],
-        },
     },
     // a list of plugins to fetch and install from npm
     // format: [@org/]project[#version]
@@ -162,15 +157,11 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [
-        "hyper-dracula",
-        "hyper-opacity",
         "hyper-tab-icons-plus",
         "hyper-statusline",
         "hyper-search",
         "hyperlinks",
         "hyperterm-overlay",
-        "hyperborder",
-        "hyper-highlight-active-pane",
     ],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here
