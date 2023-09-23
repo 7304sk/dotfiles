@@ -178,7 +178,6 @@ module.exports = {
         'tab:new': '',
         'tab:next': '',
         'tab:prev': '',
-        'tab:jump:prefix': '',
         'pane:next': '',
         'pane:prev': '',
         'pane:splitVertical': '',
