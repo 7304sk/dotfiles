@@ -67,8 +67,11 @@ let &t_SI .= "\e[6 q"
 let &t_EI .= "\e[2 q"
 let &t_SR .= "\e[4 q"
 
-" ;s で置換コマンドを展開
-cabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s//gc<Left><Left><Left>" : 's'
+"""""""""" abbreviation
+" ;r で置換コマンドを展開
+cabbrev <expr> r getcmdtype() .. getcmdline() ==# ':r' ? [getchar(), ''][1] .. "%s//gc<Left><Left><Left>" : 'r'
+" ;s で SaveSession
+cabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "SaveSession" : 's'
 
 """""""""" keymap
 " : Swap colon and semicolon
@@ -76,7 +79,7 @@ nnoremap ; :
 nnoremap : ;
 " escape
 inoremap <silent> jj <Esc>:w<CR>
-inoremap jf <Esc>:wq<CR>
+inoremap jf <Esc>:wqa<CR>
 " increment, decrement
 nnoremap + <C-a>
 nnoremap - <C-x>

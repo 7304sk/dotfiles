@@ -25,7 +25,7 @@ function fd -d 'cd forwards'
         else
             grep . #pass
         end |
-        fzf-tmux -p 80% +m --preview 'ls -alFGx {}')
+        fzf-tmux -p 80% +m --preview 'ls -Fa {}')
 
     if test -n "$result"
         set -lu from (pwd)
@@ -40,7 +40,7 @@ function fd -d 'cd forwards'
 end
 
 function bd -d 'cd backwards'
-	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | fzf-tmux -p 80% +m --preview 'ls -alFGx {}' | read -l result
+	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | fzf-tmux -p 80% +m --preview 'ls -Fa {}' | read -l result
     if test -n "$result"
         set -lu from (pwd)
         cd $result

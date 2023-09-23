@@ -168,8 +168,22 @@ module.exports = {
     // to load it and avoid it being `npm install`ed
     localPlugins: [],
     keymaps: {
-    // Example
-    'window:devtools': 'cmd+alt+o',
+        // tmux と競合しうるものをオフ
+        'window:preferences': '',
+        'window:minimize': '',
+        'window:zoom': '',
+        'window:toggleFullScreen': '',
+        'window:close': '',
+        'window:new': '',
+        'tab:new': '',
+        'tab:next': '',
+        'tab:prev': '',
+        'tab:jump:prefix': '',
+        'pane:next': '',
+        'pane:prev': '',
+        'pane:splitVertical': '',
+        'pane:splitHorizontal': '',
+        'pane:close': '',
     },
 };
 //# sourceMappingURL=config-default.js.map

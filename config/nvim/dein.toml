@@ -176,3 +176,25 @@ EOF
 [[plugins]]
 repo = 'HiPhish/nvim-ts-rainbow2'
 
+# session auto save
+[[plugins]]
+repo = 'xolox/vim-session'
+depends = ['xolox/vim-misc']
+hook_add = '''
+    " # session保存ディレクトリをそのディレクトリの設定
+    let g:session_directory = xolox#misc#path#merge(getcwd(), '.vim')
+    " # 存在すれば
+    if isdirectory(g:session_directory)
+        " # vimを辞める時に自動保存
+        let g:session_autosave = 'yes'
+        " # 引数なしでvimを起動した時にsession保存ディレクトリのdefault.vimを開く
+        let g:session_autoload = 'yes'
+        " # 1分間に1回自動保存
+        let g:session_autosave_periodic = 1
+    else
+        let g:session_autosave = 'no'
+        let g:session_autoload = 'no'
+    endif
+	'''
+[[plugins]]
+repo = 'xolox/vim-misc'
