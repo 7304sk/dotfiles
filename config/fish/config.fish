@@ -18,6 +18,7 @@ set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse
     --color=fg+:#d0d0d0,hl+:#7ddef1
     --color=info:#87afb7,prompt:#cf6f72,pointer:#7ddef1
     --color=marker:#ad95c4,spinner:#b7ba7e,header:#D39B76'
+set -xg FZF_TMUX_OPTS '-p 80%'
 set -xg VOLTA_HOME $HOME/.volta
 
 
@@ -50,3 +51,12 @@ set -g theme_newline_prompt "\e[32m\e[m "
 
 #! load after configurations
 source $HOME/.config/fish/config_unique__after.fish
+
+#! start tmux
+if set -q __in_hyper__; and status --is-login; and not set -q TMUX
+    if test -z (tmux ls | grep -E '^default: ')
+        tmux new -s default
+    else
+        tmux a -t default
+    end
+end

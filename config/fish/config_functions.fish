@@ -1,6 +1,6 @@
 #### fzf 
 function thistory
-    set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf +m | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
+    set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf-tmux -p 80% +m | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
 end
 
 function fd -d 'cd forwards'
@@ -25,7 +25,7 @@ function fd -d 'cd forwards'
         else
             grep . #pass
         end |
-        fzf +m)
+        fzf-tmux -p 80% +m --preview 'ls -alFGx {}')
 
     if test -n "$result"
         set -lu from (pwd)
@@ -40,7 +40,7 @@ function fd -d 'cd forwards'
 end
 
 function bd -d 'cd backwards'
-	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | eval (__fzfcmd) +m --select-1 --exit-0 $FZF_BCD_OPTS | read -l result
+	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | fzf-tmux -p 80% +m --preview 'ls -alFGx {}' | read -l result
     if test -n "$result"
         set -lu from (pwd)
         cd $result
@@ -61,13 +61,13 @@ function fb -d "Fuzzy-find and switch a branch"
     else
         for __branch in $__branches
             echo $__branch
-        end | fzf | read -l __result
+        end | fzf-tmux -p 40% | read -l __result
         git switch "$__result"
     end
 end
 
 function rep -d "find ghq repositories"
-    set -l __src $(ghq list | fzf --preview "ls -alFgx $(ghq root)/{}")
+    set -l __src $(ghq list | fzf-tmux -p 80% --preview "ls -alFgx $(ghq root)/{}")
     if test -n $__src
         cd "$(ghq root)/$__src"
     else

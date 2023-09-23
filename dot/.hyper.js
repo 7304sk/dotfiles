@@ -96,7 +96,9 @@ module.exports = {
         // by default `['--login']` will be used
         shellArgs: ['--login'],
         // for environment variables
-        env: {},
+        env: {
+            '__in_hyper__': true
+        },
         // Supported Options:
         //  1. 'SOUND' -> Enables the bell as a sound
         //  2. false: turns off the bell
