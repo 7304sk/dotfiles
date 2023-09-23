@@ -30,7 +30,7 @@ source $HOME/.config/fish/config_functions.fish
 #! Configuration by OS
 if test (uname -s) = Darwin
     #! for Mac
-    set -xg PATH $VOLTA_HOME/bin /usr/local/mysql/bin /opt/homebrew/opt/gnu-sed/libexec/gnubin /opt/homebrew/opt/gnu-tar/libexec/gnubin /opt/homebrew/opt/grep/libexec/gnubin /opt/homebrew/opt/gawk/libexec/gnubin /opt/homebrew/opt/findutils/libexec/gnubin /opt/homebrew/opt/coreutils/libexec/gnubin /opt/homebrew/bin $PATH
+    set -xg PATH $VOLTA_HOME/bin /usr/local/mysql/bin /opt/homebrew/opt/gnu-sed/libexec/gnubin /opt/homebrew/opt/gnu-tar/libexec/gnubin /opt/homebrew/opt/grep/libexec/gnubin /opt/homebrew/opt/gawk/libexec/gnubin /opt/homebrew/opt/findutils/libexec/gnubin /opt/homebrew/opt/coreutils/libexec/gnubin /opt/homebrew/sbin /opt/homebrew/bin $PATH
 else
     #! for other (Linux)
     eval ~/anaconda3/bin/conda "shell.fish" hook $argv | source

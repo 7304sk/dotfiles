@@ -76,6 +76,17 @@ function rep -d "find ghq repositories"
     end
 end
 
+#### Mac
+function bupdate
+    set_color yellow; and echo '>>> Update homebrew'; and set_color normal
+    brew update
+    set_color yellow; and echo '>>> Update all installed formulas'; and set_color normal
+    brew upgrade
+    set_color yellow; and echo '>>> Remove useless formulas'; and set_color normal
+    brew autoremove
+    set_color yellow; and echo '>>> System check'; and set_color normal
+    brew doctor
+end
 #### other
 function cleanjs -d "Minimize javascript"
     argparse -n cleanjs 'o/output=' -- $argv

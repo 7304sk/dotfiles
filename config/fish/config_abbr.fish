@@ -34,7 +34,7 @@ abbr -a sar     sudo apt remove
 abbr -a sas     sudo apt search
 # mac
 abbr -a hb      brew
-abbr -a hbu     'brew update && brew upgrade'
+abbr -a hu      bupdate
 abbr -a nb      nodebrew
 # git
 abbr -a g       git
