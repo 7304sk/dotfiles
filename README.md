@@ -30,7 +30,9 @@ sudo echo "$(which fish)" >> /etc/shells
 chsh -s "$(which fish)"
 fish
 # node
-n stable
+volta install node@stable
+# tmux (tpm)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # neovim (dein.nvim)
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
 sh ./installer.sh ~/.cache/dein && rm ./installer.sh
