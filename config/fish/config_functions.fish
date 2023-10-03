@@ -68,8 +68,10 @@ end
 
 function rep -d "find ghq repositories"
     set -l __src $(ghq list | fzf-tmux -p 80% --preview "ls -alFgx $(ghq root)/{}")
-    if test -n $__src
-        cd "$(ghq root)/$__src"
+    set -l __target "$(ghq root)/$__src"
+    if test -d $__target; and test "$__src" != ""
+        cd $__target
+        echo $__target
     else
         echo "Canceled."
         return 1
