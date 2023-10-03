@@ -37,7 +37,13 @@ module.exports = {
         // border color (window, tabs)
         borderColor: '#44475a',
         // custom CSS to embed in the main window
-        css: '',
+        css: `
+        .hyper_main > header {
+            display: none;
+        }
+        .terms_terms {
+            margin-top: 0!important;
+        }`,
         // custom CSS to embed in the terminal window
         termCSS: '',
         // set custom startup directory (must be an absolute path)
@@ -157,8 +163,6 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [
-        "hyper-tab-icons-plus",
-        "hyper-statusline",
         "hyper-search",
         "hyperlinks",
         "hyperterm-overlay",
