@@ -42,7 +42,7 @@ end
 
 #! set bobthefish
 set -g theme_color_scheme dracula
-set -g theme_display_user yes
+set -g theme_display_user no
 set -g theme_display_hostname no
 set -g theme_newline_cursor yes
 set -g theme_display_vi yes
