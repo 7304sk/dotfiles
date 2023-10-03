@@ -109,8 +109,8 @@ nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>x :bd<CR>
 " ペイン分割
-nnoremap <Leader>w :vs<CR>
-nnoremap <Leader>q :sp<CR>
+nnoremap <Leader>\ :vs<CR>
+nnoremap <Leader>- :sp<CR>
 " ペイン移動
 nnoremap <Leader><Left> <C-w><Left>
 nnoremap <Leader><Down> <C-w><Down>
@@ -123,7 +123,7 @@ nnoremap <Leader>l <C-w><Right>
 
 """""""""" プラグイン関連
 """"" Fern
-nnoremap <Leader><Leader> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nnoremap <Leader><Leader> :Fern . -reveal=% -drawer -toggle -width=100<CR>
 """"" CoC
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-Space> coc#refresh()
@@ -162,9 +162,9 @@ nnoremap <Leader>gf :G fetch --prune<CR>
 " git branch
 nnoremap <Leader>gb :G! -p branch -a<CR>
 " git diff
-nnoremap <Leader>gd :Gdiffsplit 
+nnoremap <Leader>gd :Gdiffsplit<CR>
 " git switch
-nnoremap <Leader>gw :GRead 
+nnoremap <Leader>gw :G switch 
 " git blame
 nnoremap <Leader>gm :G blame<CR>
 " git log
@@ -211,3 +211,4 @@ nnoremap <Leader>] <Plug>(edgemotion-j)
 xnoremap <Leader>] <Plug>(edgemotion-j)
 nnoremap <Leader>[ <Plug>(edgemotion-k)
 xnoremap <Leader>[ <Plug>(edgemotion-k)
+
