@@ -99,18 +99,15 @@ nnoremap <Leader>8 *
 xnoremap <Leader>8 *
 " 全選択
 nnoremap <Leader>a ggVG
-" scroll
-nnoremap <Leader>d <C-d>
-nnoremap <Leader>s <C-u>
 " undo, redo
 nnoremap <Leader>z :undo<CR>
 nnoremap <Leader>y :redo<CR>
 " 検索を解除
-nnoremap <silent> <Leader>c :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <Leader>d :<C-u>nohlsearch<CR><C-l>
 " バッファ移動
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>v :bd<CR>
+nnoremap <Leader>x :bd<CR>
 " ペイン分割
 nnoremap <Leader>w :vs<CR>
 nnoremap <Leader>q :sp<CR>
