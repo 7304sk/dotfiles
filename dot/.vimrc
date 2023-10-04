@@ -103,7 +103,7 @@ nnoremap <Leader>a ggVG
 nnoremap <Leader>z :undo<CR>
 nnoremap <Leader>y :redo<CR>
 " 検索を解除
-nnoremap <silent> <Leader>d :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <Leader>q :<C-u>nohlsearch<CR><C-l>
 " バッファ移動
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>

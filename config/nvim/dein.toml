@@ -155,6 +155,7 @@ hook_add = '''
 # indent line
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
+rev = 'v2.20.8'
 hook_add = '''
 lua << EOF
 require("indent_blankline").setup {
@@ -207,3 +208,4 @@ repo = 'kana/vim-smartword'
 # キャメルケースなどで単語移動できるようにする
 [[plugins]]
 repo = 'chaoren/vim-wordmotion'
+
