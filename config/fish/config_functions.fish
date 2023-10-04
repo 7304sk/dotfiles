@@ -3,36 +3,18 @@ function thistory
     set -lu ph $(history --show-time='%Y-%m-%d %H:%M:%S    ' | fzf-tmux -p 80% +m | awk -F '    ' '{print $2}') ; echo -n $ph | pbcopy ; pbpaste
 end
 
-function fd -d 'cd forwards'
-    argparse -n fd 'a/all' 'e/exclude=+' -- $argv
+function fd -d 'continuous cd forwards'
+    set -lu _from (pwd)
+    set -lu _to $(find . -maxdepth 1 -type d 2> /dev/null | fzf-tmux -p 80% +m --preview 'ls -Fa {}')
 
-    [ "$argv[1]" ]; and set -l depth $argv[1]
-    or set -l depth 1
+    while test -n "$_to"; and test "$_to" != "."
+        cd $_to
+        set _to $(find . -maxdepth 1 -type d 2> /dev/null | fzf-tmux -p 80% +m --preview 'ls -Fa {}')
+    end
 
-    set -lu result $(
-        find . -maxdepth $depth -type d -not -name '.' 2> /dev/null | 
-        if set -q _flag_all
-            grep . #pass
-        else
-            grep -v "/\."
-        end |
-        if set -q _flag_exclude
-            set -lu exc_str "grep -v"
-            for e in $_flag_exclude
-                set exc_str (string join ' ' $exc_str "\-e $e")
-            end
-            eval $exc_str
-        else
-            grep . #pass
-        end |
-        fzf-tmux -p 80% +m --preview 'ls -Fa {}')
-
-    if test -n "$result"
-        set -lu from (pwd)
-        cd $result
-        set -lu to (pwd)
-        echo "FROM: $from"
-        echo "TO:   $to"
+    if test $_from != (pwd)
+        echo "FROM: $_from"
+        echo "TO:   $(pwd)"
     else
         echo "Canceled."
         return 1

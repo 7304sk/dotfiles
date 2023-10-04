@@ -4,7 +4,7 @@ alias view='nvim -R'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-alias ls='exa --icons --git --time-style long-iso'
+alias ls='eza --icons --git --time-style long-iso'
 
 #! global variables
 set -xg LANG ja_JP.UTF-8
