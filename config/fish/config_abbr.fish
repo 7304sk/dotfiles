@@ -42,19 +42,22 @@ abbr -a gi      git init
 abbr -a ga      git add -A
 abbr -a gc      git commit
 abbr -a gp      git push
-abbr -a gf      git fetch --prune
+abbr -a gpf     git push --force-with-lease --force-if-includes
 abbr -a gpl     git pull origin
+abbr -a gf      git fetch --prune
 abbr -a gm      git merge
 abbr -a grt     git reset
 abbr -a gk      git checkout
 abbr -a gw      git switch
 abbr -a gr      git restore
+abbr -a grb     git rebase
 abbr -a gb      git branch
 abbr -a gcy     git cherry-pick
 abbr -a gd      git diff --color-words --word-diff
 abbr -a gs      git status -s
 abbr -a gss     git stash save
 abbr -a gsp     git stash pop stash@{0}
+abbr -a gsd     git stash drop stash@{0}
 abbr -a gsl     git stash list
 abbr -a gt      git tag
 abbr -a gl      git tree
