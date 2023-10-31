@@ -97,10 +97,10 @@ let g:tex_conceal = ""
 let g:vim_markdown_math = 1
 
 " coc.nvim
-nnoremap <silent> <Leader>cd <Plug>(coc-definition)
-nnoremap <silent> <Leader>ct <Plug>(coc-type-definition)
-nnoremap <silent> <Leader>ci <Plug>(coc-implementation)
-nnoremap <silent> <Leader>cr <Plug>(coc-references)
-nnoremap <silent> <Leader>cn <Plug>(coc-rename)
-nnoremap <Leader>cl :CocList<cr>
+nnoremap <silent> <leader>cd <Plug>(coc-definition)
+nnoremap <silent> <leader>ct <Plug>(coc-type-definition)
+nnoremap <silent> <leader>ci <Plug>(coc-implementation)
+nnoremap <silent> <leader>cr <Plug>(coc-references)
+nnoremap <silent> <leader>cn <Plug>(coc-rename)
+nnoremap <leader>cl :CocList<cr>
 

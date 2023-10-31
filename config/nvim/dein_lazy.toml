@@ -21,3 +21,9 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_ft = ['css', 'sass', 'scss']
+
+# SQL で自動的に大文字にする
+[[plugins]]
+repo = 'jsborjesson/vim-uppercase-sql'
+on_ft = ['sql']
+

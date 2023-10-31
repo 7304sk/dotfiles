@@ -49,7 +49,7 @@ if has('persistent_undo')
 endif
 set shortmess+=c
 set signcolumn=yes
-" <Leader> を Space キーに割り当て
+" <leader> を Space キーに割り当て
 let mapleader = "\<Space>"
 "" 反映時間を短くする(デフォルトは4000ms)
 set updatetime=250
@@ -70,8 +70,8 @@ let &t_SR .= "\e[4 q"
 """""""""" abbreviation
 " ;r で置換コマンドを展開
 cabbrev <expr> r getcmdtype() .. getcmdline() ==# ':r' ? [getchar(), ''][1] .. "%s//gc<Left><Left><Left>" : 'r'
-" ;s で SaveSession
-cabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "SaveSession" : 's'
+" load session
+cabbrev gsl GitSessionLoad
 
 """""""""" keymap
 " : Swap colon and semicolon
@@ -80,50 +80,53 @@ nnoremap : ;
 " escape
 inoremap <silent> jj <Esc>:w<CR>
 inoremap jf <Esc>:wqa<CR>
+" save files with session
+nnoremap <leader>wq :GitSessionSave<CR>:wqa<CR>
 " increment, decrement
 nnoremap + <C-a>
 nnoremap - <C-x>
 " indent, outdent
-nnoremap <Leader>. >>
-xnoremap <Leader>. >
-nnoremap <Leader>, <<
-xnoremap <Leader>, <
+nnoremap <leader>. >>
+xnoremap <leader>. >
+nnoremap <leader>, <<
+xnoremap <leader>, <
 " jump
-nnoremap <Leader>4 $
+nnoremap <leader>4 $
 xnoremap <leader>4 $
-nnoremap <Leader>5 %
-xnoremap <Leader>5 %
-nnoremap <Leader>6 ^
-xnoremap <Leader>6 ^
-nnoremap <Leader>8 *
-xnoremap <Leader>8 *
+nnoremap <leader>5 %
+xnoremap <leader>5 %
+nnoremap <leader>6 ^
+xnoremap <leader>6 ^
+nnoremap <leader>8 *
+xnoremap <leader>8 *
 " 全選択
-nnoremap <Leader>a ggVG
+nnoremap <leader>a ggVG
 " undo, redo
-nnoremap <Leader>z :undo<CR>
-nnoremap <Leader>y :redo<CR>
+nnoremap <leader>z :undo<CR>
+nnoremap <leader>y :redo<CR>
 " 検索を解除
-nnoremap <silent> <Leader>q :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <leader>q :<C-u>nohlsearch<CR><C-l>
 " バッファ移動
-nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>x :bd<CR>
+nnoremap <leader>b :bp<CR>
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>x :bd<CR>
 " ペイン分割
-nnoremap <Leader>\ :vs<CR>
-nnoremap <Leader>- :sp<CR>
+nnoremap <leader>\ :vs<CR>
+nnoremap <leader>- :sp<CR>
 " ペイン移動
-nnoremap <Leader><Left> <C-w><Left>
-nnoremap <Leader><Down> <C-w><Down>
-nnoremap <Leader><Up> <C-w><Up>
-nnoremap <Leader><Right> <C-w><Right>
-nnoremap <Leader>h <C-w><Left>
-nnoremap <Leader>j <C-w><Down>
-nnoremap <Leader>k <C-w><Up>
-nnoremap <Leader>l <C-w><Right>
+nnoremap <leader><Left> <C-w><Left>
+nnoremap <leader><Down> <C-w><Down>
+nnoremap <leader><Up> <C-w><Up>
+nnoremap <leader><Right> <C-w><Right>
+nnoremap <leader>h <C-w><Left>
+nnoremap <leader>j <C-w><Down>
+nnoremap <leader>k <C-w><Up>
+nnoremap <leader>l <C-w><Right>
 
 """""""""" プラグイン関連
 """"" Fern
-nnoremap <Leader><Leader> :Fern . -reveal=% -drawer -toggle -width=100<CR>
+nnoremap <leader><leader> :Fern . -reveal=% -drawer -toggle -width=50<CR>
+cabbrev fe :Fern . -reveal=% -drawer -toggle -width=50
 """"" CoC
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-Space> coc#refresh()
@@ -143,44 +146,44 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>" " "\<C-h
 inoremap <silent><expr> <c-space> coc#refresh()
 """"" Markdown
 " preview
-nnoremap <Leader>m :MarkdownPreview<CR>
+nnoremap <leader>m :MarkdownPreview<CR>
 " markdown table
 vnoremap mt :'<,'>MakeTable
 vnoremap tm :'<,'>MakeTable!
-nnoremap <Leader>t :UnmakeTable
+nnoremap <leader>t :UnmakeTable
 """"" git
 " git status
-nnoremap <Leader>gs :G<CR>
+nnoremap <leader>gs :G<CR>
 " git add
-nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <leader>ga :Gwrite<CR>
 " git commit
-nnoremap <Leader>gc :G commit<CR>
+nnoremap <leader>gc :G commit<CR>
 " git push
-nnoremap <Leader>gp :G push<CR>
+nnoremap <leader>gp :G push<CR>
 " git fetch
-nnoremap <Leader>gf :G fetch --prune<CR>
+nnoremap <leader>gf :G fetch --prune<CR>
 " git branch
-nnoremap <Leader>gb :G! -p branch -a<CR>
+nnoremap <leader>gb :G! -p branch -a<CR>
 " git diff
-nnoremap <Leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
 " git switch
-nnoremap <Leader>gw :G switch 
+nnoremap <leader>gw :G switch 
 " git blame
-nnoremap <Leader>gm :G blame<CR>
+nnoremap <leader>gm :G blame<CR>
 " git log
-nnoremap <Leader>gl :G! tree<CR>
+nnoremap <leader>gl :G! tree<CR>
 " 直前のgit変更箇所へ移動する
-nnoremap <Leader>gk :GitGutterPrevHunk<CR>
+nnoremap <leader>gk :GitGutterPrevHunk<CR>
 " 次のgit変更箇所へ移動する
-nnoremap <Leader>gj :GitGutterNextHunk<CR>
+nnoremap <leader>gj :GitGutterNextHunk<CR>
 " git diffをハイライトする
-nnoremap <Leader>gh :GitGutterLineHighlightsToggle<CR>
+nnoremap <leader>gh :GitGutterLineHighlightsToggle<CR>
 " Gitguuter記号の色を変更する
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 """"" fzf.vim
-" Space fnでファイル名検索を開く。 git管理されていれば:GFiles、そうでなければ:Filesを実行する
+" ;fnでファイル名検索を開く。 git管理されていれば:GFiles、そうでなければ:Filesを実行する
 fun! FzfOmniFiles()
   let is_git = system('git status')
   if v:shell_error
@@ -189,26 +192,23 @@ fun! FzfOmniFiles()
     :GFiles
   endif
 endfun
-nnoremap <Leader>fn :call FzfOmniFiles()<CR>
 cabbrev fn call FzfOmniFiles()
-" Space faでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
+" ;faでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \ 'rg --column --line-number --hidden --follow --ignore-case --no-heading --color=always --glob "!.git/*" '.shellescape(<q-args>), 1,
 \ <bang>1 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
 \ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'up:60%:hidden', '?'),
 \ <bang>0)
-nnoremap <Leader>fa :Rg<CR>
-cabbrev fa execute ":Rg"
-" Space fで開いているファイルの文字列検索を開く
-nnoremap <Leader>ff :BLines<CR>
-cabbrev f execute ":BLines"
-" (Visual) Space fで選択した単語をファイル間で文字列検索する
-xnoremap <Leader>f y:Rg <C-R>"<CR>
+cabbrev fa Rg
+" ;fで開いているファイルの文字列検索を開く
+cabbrev f BLines
 """"" edgemotion
 " ブロック移動（縦方向）
-nnoremap <Leader>] <Plug>(edgemotion-j)
-xnoremap <Leader>] <Plug>(edgemotion-j)
-nnoremap <Leader>[ <Plug>(edgemotion-k)
-xnoremap <Leader>[ <Plug>(edgemotion-k)
+nnoremap <leader>] <Plug>(edgemotion-j)
+xnoremap <leader>] <Plug>(edgemotion-j)
+nnoremap <leader>[ <Plug>(edgemotion-k)
+xnoremap <leader>[ <Plug>(edgemotion-k)
+""""" jumpcursor
+nnoremap <leader>f <Plug>(jumpcursor-jump)
 
