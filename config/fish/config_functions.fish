@@ -36,7 +36,7 @@ function bd -d 'cd backwards'
 end
 
 function fb -d "Fuzzy-find and switch a branch"
-    set -l __branches (git branch | grep -v "^\*" | grep -v HEAD | string trim)
+    set -l __branches (git branch -a | grep -v "^\*" | grep -v HEAD | string trim)
     if [ "$__branches" = "" ]
         echo "Here is no other branches."
         return 1
@@ -44,7 +44,38 @@ function fb -d "Fuzzy-find and switch a branch"
         for __branch in $__branches
             echo $__branch
         end | fzf-tmux -p 40% | read -l __result
-        git switch "$__result"
+        if [ "$(string match 'remotes/*' $__result)" != "" ]
+            set -l __target (string replace -r '^remotes/.+?/(.+)$' '$1' $__result)
+            git switch "$__target"
+        else
+            git switch "$__result"
+        end
+    end
+end
+
+function db -d "Fuzzy-find and delete branches"
+    set -l __branches (git branch | grep -v "^\*" | grep -v HEAD | string trim)
+    if [ "$__branches" = "" ]
+        echo "Here is no other branches."
+        return 1
+    else
+        set -l __selected (for __branch in $__branches
+            echo $__branch
+        end | fzf-tmux -p 40% -m)
+        for __b in $__selected
+            set -l __input 'n'
+            while [ "$__input" = "y" ]; or [ "$__input" = "n" ]
+                read -n1 -p  'echo -e "$__b\t -- Are you sure to delete? (y/n): "' __input
+                if [ "$__input" = "y" ]
+                    git branch -D $__b
+                    break
+                end
+                if [ "$__input" = "n" ]
+                    echo "skipped."
+                    break
+                end
+            end
+        end
     end
 end
 
