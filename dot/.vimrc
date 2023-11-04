@@ -144,6 +144,7 @@ inoremap <silent><expr> <TAB>
   \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>" " "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
+nnoremap <silent> <tab> :call CocAction('doHover')<CR>
 """"" Markdown
 " preview
 nnoremap <leader>m :MarkdownPreview<CR>

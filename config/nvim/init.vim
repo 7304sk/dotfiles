@@ -22,7 +22,6 @@ endif
 filetype plugin indent on
 syntax enable
 
-" 全角スペースを強調
 if !exists('g:vscode')
     autocmd Colorscheme * highlight IndentBlanklineIndent1 guifg=#662121
     autocmd Colorscheme * highlight IndentBlanklineIndent2 guifg=#767621
@@ -30,6 +29,7 @@ if !exists('g:vscode')
     autocmd Colorscheme * highlight IndentBlanklineIndent4 guifg=#325a5e
     autocmd Colorscheme * highlight IndentBlanklineIndent5 guifg=#324b7b
     autocmd Colorscheme * highlight IndentBlanklineIndent6 guifg=#562155
+    " 全角スペースを強調
     autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
     autocmd VimEnter * match FullWidthSpace /　/
     " color theme
@@ -103,4 +103,14 @@ nnoremap <silent> <leader>ci <Plug>(coc-implementation)
 nnoremap <silent> <leader>cr <Plug>(coc-references)
 nnoremap <silent> <leader>cn <Plug>(coc-rename)
 nnoremap <leader>cl :CocList<cr>
+
+" copilot
+let g:copilot_filetypes = {
+    \ 'gitcommit': v:true,
+    \ 'markdown': v:true,
+    \ 'yaml': v:true
+    \ }
+" tab は coc.nvim で使っているので、copilot では Shift-tab にする
+let g:copilot_no_tab_map = v:true
+imap <silent><script><expr> <S-tab> copilot#Accept("\<CR>")
 
