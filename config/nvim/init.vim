@@ -114,3 +114,8 @@ let g:copilot_filetypes = {
 let g:copilot_no_tab_map = v:true
 imap <silent><script><expr> <S-tab> copilot#Accept("\<CR>")
 
+" gitsessions.vim
+" auto load をそのままだとtreeSitter が効かないので、遅延実行する
+let g:gitsessions_disable_auto_load = 1
+call timer_start(1, {-> execute('GitSessionLoad')})
+
