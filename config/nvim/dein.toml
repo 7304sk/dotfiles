@@ -1,8 +1,88 @@
+#####################
+### Theme
 # vim-code-dark (VS Code風カラーテーマ)
 [[plugins]]
 repo = 'tomasiser/vim-code-dark'
+# airline
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#branch#enabled=1
+    let g:airline#extensions#hunks#enabled=0
+    let g:airline_theme = 'codedark'
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_section_a = airline#section#create(['mode', 'crypt'])
+'''
+# indent line
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+rev = 'v2.20.8'
+hook_add = '''
+lua << EOF
+require("indent_blankline").setup {
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+    show_current_context = true,
+    show_current_context_start = true,
+}
+EOF
+'''
 
-# coc
+#####################
+### Filer
+# fern
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+hook_add = '''
+    let g:fern#default_hidden=1
+    let g:fern#renderer#nerdfont#indent_markers=1
+    let g:fern#default_exclude='.DS_Store'
+'''
+# fern-hijack
+[[plugins]]
+repo = 'lambdalisue/fern-hijack.vim'
+# git-status for fern
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+# nerdfont for fern
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+hook_add = '''
+  let g:fern#renderer = 'nerdfont'
+'''
+# Nerd font icons
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+  augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
+  augroup END
+'''
+# fern preview
+[[plugins]]
+repo = 'yuki-yano/fern-preview.vim'
+# devicons
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+#####################
+### LSP
+# coc.nvim
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
@@ -35,116 +115,29 @@ hook_add = '''
     \]
 '''
 
-# copilot
-[[plugins]]
-repo = 'github/copilot.vim'
-
-# fern
-[[plugins]]
-repo = 'lambdalisue/fern.vim'
-hook_add = '''
-    let g:fern#default_hidden=1
-    let g:fern#renderer#nerdfont#indent_markers=1
-    let g:fern#default_exclude='.DS_Store'
-'''
-
-# fern-hijack
-[[plugins]]
-repo = 'lambdalisue/fern-hijack.vim'
-
-# git-status for fern
-[[plugins]]
-repo = 'lambdalisue/fern-git-status.vim'
-
-# nerdfont for fern
-[[plugins]]
-repo = 'lambdalisue/nerdfont.vim'
-
-[[plugins]]
-repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-hook_add = '''
-  let g:fern#renderer = 'nerdfont'
-'''
-
-[[plugins]]
-repo = 'lambdalisue/glyph-palette.vim'
-hook_add = '''
-  augroup my-glyph-palette
-    autocmd! *
-    autocmd FileType fern call glyph_palette#apply()
-    autocmd FileType nerdtree,startify call glyph_palette#apply()
-  augroup END
-'''
-
-# fern preview
-[[plugins]]
-repo = 'yuki-yano/fern-preview.vim'
-
-# devicons
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
-
+#####################
+### Syntax parser
 # TreeSitter
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-
 # TreeSitterの設定変更用
 [[plugins]]
 repo = 'nvim-treesitter/playground'
-
-# notify
+# Colorize brackets pair on TreeSitter
 [[plugins]]
-repo = 'rcarriga/nvim-notify'
+repo = 'HiPhish/nvim-ts-rainbow2'
 
-# quick-scope
-[[plugins]]
-repo = 'unblevable/quick-scope'
-
-# 単語ハイライト
-[[plugins]]
-repo = 'RRethy/vim-illuminate'
-
-# vim-edgemotion
-[[plugins]]
-repo = 'haya14busa/vim-edgemotion'
-
+#####################
+### Git
 # fugitive
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-
 # committia
 [[plugins]]
 repo = 'rhysd/committia.vim'
-
 # interactive rebase
 [[plugins]]
 repo = 'hotwatermorning/auto-git-diff'
-
-# airline
-[[plugins]]
-repo = 'vim-airline/vim-airline'
-hook_add = '''
-    let g:airline_powerline_fonts = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#buffer_nr_show = 1
-    let g:airline#extensions#branch#enabled=1
-    let g:airline#extensions#hunks#enabled=0
-    let g:airline_theme = 'codedark'
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    let g:airline_section_a = airline#section#create(['mode', 'crypt'])
-'''
-
-# fzf
-[[plugins]]
-repo = 'junegunn/fzf'
-hook_post_update = './install --all'
-merged = 0
-
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-
 # gitgutter
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -158,58 +151,52 @@ hook_add = '''
     highlight GitGutterChangeDelete ctermfg=yellow
 '''
 
+#####################
+### Motion
+# vim-edgemotion
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+# 記号などでの単語区切りをいい感じに
+[[plugins]]
+repo = 'kana/vim-smartword'
+# キャメルケースなどで単語移動できるようにする
+[[plugins]]
+repo = 'chaoren/vim-wordmotion'
+# w,b が行を跨がない
+[[plugins]]
+repo = 'yutkat/wb-only-current-line.nvim'
+# jump cursor
+[[plugins]]
+repo = 'skanehira/jumpcursor.vim'
+# *の際にカーソル位置を記憶
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
+
+#####################
+### Other
+# fzf
+[[plugins]]
+repo = 'junegunn/fzf'
+hook_post_update = './install --all'
+merged = 0
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+# notify
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+# f コマンドの補助ハイライト
+[[plugins]]
+repo = 'unblevable/quick-scope'
+# 単語ハイライト
+[[plugins]]
+repo = 'RRethy/vim-illuminate'
 # tcomment
 [[plugins]]
 repo = 'tomtom/tcomment_vim'
 hook_add = '''
     vnoremap ? :'<,'>TComment<CR>
 '''
-
-# indent line
-[[plugins]]
-repo = 'lukas-reineke/indent-blankline.nvim'
-rev = 'v2.20.8'
-hook_add = '''
-lua << EOF
-require("indent_blankline").setup {
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
-    show_current_context = true,
-    show_current_context_start = true,
-}
-EOF
-'''
-
-# Colorize brackets pair on TreeSitter
-[[plugins]]
-repo = 'HiPhish/nvim-ts-rainbow2'
-
 # save session for git branch
 [[plugins]]
 repo = 'wting/gitsessions.vim'
 
-# 記号などでの単語区切りをいい感じに
-[[plugins]]
-repo = 'kana/vim-smartword'
-
-# キャメルケースなどで単語移動できるようにする
-[[plugins]]
-repo = 'chaoren/vim-wordmotion'
-
-# w,b が行を跨がない
-[[plugins]]
-repo = 'yutkat/wb-only-current-line.nvim'
-
-# jump cursor
-[[plugins]]
-repo = 'skanehira/jumpcursor.vim'
-
-# カーソル位置を記憶
-[[plugins]]
-repo = 'haya14busa/vim-asterisk'
