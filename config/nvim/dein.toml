@@ -114,6 +114,9 @@ hook_add = '''
         \'coc-copilot', 
     \]
 '''
+# copilot
+[[plugins]]
+repo = 'github/copilot.vim'
 
 #####################
 ### Syntax parser
