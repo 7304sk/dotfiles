@@ -1,4 +1,10 @@
 #####################
+### Basic
+# denoops
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+#####################
 ### Theme
 # vim-code-dark (VS Code風カラーテーマ)
 [[plugins]]
@@ -175,14 +181,44 @@ repo = 'skanehira/jumpcursor.vim'
 repo = 'haya14busa/vim-asterisk'
 
 #####################
+### Fuzzy finder
+## ddu
+[[plugins]]
+repo= 'Shougo/ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+# ui
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+# source
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+[[plugins]]
+repo = 'Shougo/ddu-source-line'
+[[plugins]]
+repo = 'Shougo/ddu-source-register'
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+[[plugins]]
+repo = 'shun/ddu-source-buffer'
+# kind
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+[[plugins]]
+repo = 'Shougo/ddu-kind-word'
+# filter
+[[plugins]]
+repo = 'yuki-yano/ddu-filter-fzf'
+# column
+[[plugins]]
+repo = 'ryota2357/ddu-column-icon_filename'
+
+#####################
 ### Other
-# fzf
-[[plugins]]
-repo = 'junegunn/fzf'
-hook_post_update = './install --all'
-merged = 0
-[[plugins]]
-repo = 'junegunn/fzf.vim'
 # notify
 [[plugins]]
 repo = 'rcarriga/nvim-notify'

@@ -184,27 +184,6 @@ nnoremap <leader>gh :GitGutterLineHighlightsToggle<CR>
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
-""""" fzf.vim
-" ;fnでファイル名検索を開く。 git管理されていれば:GFiles、そうでなければ:Filesを実行する
-fun! FzfOmniFiles()
-  let is_git = system('git status')
-  if v:shell_error
-    :Files
-  else
-    :GFiles
-  endif
-endfun
-cabbrev fn call FzfOmniFiles()
-" ;faでワークスペース内の文字列検索を開く。 <?>でプレビューを表示/非表示する
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\ 'rg --column --line-number --hidden --follow --ignore-case --no-heading --color=always --glob "!.git/*" '.shellescape(<q-args>), 1,
-\ <bang>1 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
-\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'up:60%:hidden', '?'),
-\ <bang>0)
-cabbrev fa Rg
-" ;fで開いているファイルの文字列検索を開く
-cabbrev f BLines
 """"" edgemotion
 " ブロック移動（縦方向）
 nnoremap <leader>] <Plug>(edgemotion-j)
