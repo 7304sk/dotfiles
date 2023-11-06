@@ -61,11 +61,6 @@ if vim.fn.exists("g:vscode") ~= 1 then
                 'markdown'
             }
         },
-        rainbow = {
-            enable = true,
-            query = 'rainbow-parens',
-            strategy = require('ts-rainbow').strategy.global,
-        }
     }
 end
 EOF

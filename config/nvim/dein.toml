@@ -123,12 +123,11 @@ repo = 'github/copilot.vim'
 # TreeSitter
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = ':TSUpdate'
+merged = 0
 # TreeSitterの設定変更用
 [[plugins]]
 repo = 'nvim-treesitter/playground'
-# Colorize brackets pair on TreeSitter
-[[plugins]]
-repo = 'HiPhish/nvim-ts-rainbow2'
 
 #####################
 ### Git

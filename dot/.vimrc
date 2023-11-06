@@ -71,7 +71,8 @@ let &t_SR .= "\e[4 q"
 " ;r で置換コマンドを展開
 cabbrev <expr> r getcmdtype() .. getcmdline() ==# ':r' ? [getchar(), ''][1] .. "%s//gc<Left><Left><Left>" : 'r'
 " load session
-cabbrev gsl GitSessionLoad
+cabbrev <expr> gsl getcmdtype() .. getcmdline() ==# ':gsl' ? [getchar(), ''][1] .. "GitSessionLoad<cr>" : 'gsl'
+cabbrev <expr> gss getcmdtype() .. getcmdline() ==# ':gss' ? [getchar(), ''][1] .. "GitSessionSave<cr>" : 'gss'
 
 """""""""" keymap
 " : Swap colon and semicolon
