@@ -105,9 +105,9 @@ let g:copilot_filetypes = {
     \ 'markdown': v:true,
     \ 'yaml': v:true
     \ }
-" tab は coc.nvim で使っているので、copilot では Shift-tab にする
+" tab は coc.nvim で使っているので、copilot では Control-tab にする
 let g:copilot_no_tab_map = v:true
-imap <silent><script><expr> <S-tab> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-tab> copilot#Accept("\<CR>")
 
 " gitsessions.vim
 " auto load をそのままだとtreeSitter が効かないので、遅延実行する
@@ -115,40 +115,44 @@ let g:gitsessions_disable_auto_load = 1
 call timer_start(1, {-> execute('GitSessionLoad')})
 
 " ddu
-let win_border = 'solid'
-let win_height = '&lines - 3'
+let win_border = 'single'
+let win_height = '&lines - 8'
 let win_width = '&columns / 2 - 3'
 let win_col = 1
-let win_row = 0
-let preview_row = 3
+let win_row = 4
+let preview_row = 1
+let preview_height = '&lines - 5'
 let preview_col = '&columns / 2'
 call ddu#custom#patch_global({
 \	'ui': 'ff',
 \	'uiParams': {
 \		'ff': {
 \			'autoAction': { 'name': 'preview', 'delay': 0, },
-\			'ignoreEmpty': v:true,
-\			'split': 'floating',
 \			'startAutoAction': v:true,
+\			'ignoreEmpty': v:false,
+\			'split': 'floating',
 \			'prompt': '> ',
+\           'cursorPos': 0,
 \			'startFilter': v:true,
 \			'filterSplitDirection': 'floating',
-\			'filterFloatingPosition': 'bottom',
-\           'filterFloatingTitle': 'Filter',
-\           'filterFloatingTitlePos': 'center',
+\			'filterFloatingPosition': 'top',
+\           'filterFloatingTitle': 'Text in Current Buffer',
 \			'floatingBorder': win_border,
 \			'winHeight': win_height,
 \			'winWidth': win_width,
 \			'winRow': win_row,
 \			'winCol': win_col,
 \			'previewFloating': v:true,
+\           'previewSplit': 'vertical',
 \			'previewFloatingBorder': win_border,
-\			'previewHeight': win_height,
+\			'previewHeight': preview_height,
 \			'previewWidth': win_width,
 \			'previewRow': preview_row,
 \			'previewCol': preview_col,
 \		},
 \		'filer': {
+\			'autoAction': { 'name': 'preview', 'delay': 0, },
+\			'startAutoAction': v:true,
 \			'split': 'floating',
 \			'floatingBorder': win_border,
 \			'winHeight': win_height,
@@ -156,8 +160,9 @@ call ddu#custom#patch_global({
 \			'winRow': win_row,
 \			'winCol': win_col,
 \			'previewFloating': v:true,
+\           'previewSplit': 'vertical',
 \			'previewFloatingBorder': win_border,
-\			'previewHeight': win_height,
+\			'previewHeight': preview_height,
 \			'previewWidth': win_width,
 \			'previewRow': preview_row,
 \			'previewCol': preview_col,
@@ -188,6 +193,12 @@ call ddu#custom#patch_global({
 \		'word': {
 \			'defaultAction': 'append',
 \		},
+\       'lsp': {
+\           'defaultAction': 'open',
+\       },
+\       'lsp_codeAction': {
+\           'defaultAction': 'apply',
+\       },
 \	},
 \	'actionOptions': {
 \		'narrow': {
@@ -196,7 +207,15 @@ call ddu#custom#patch_global({
 \	},
 \})
 
+call ddu#custom#patch_local('noFilter', {
+\	'uiParams': {'ff': {
+\       'winRow': preview_row,
+\       'winHeight': preview_height,
+\   }},
+\})
+
 call ddu#custom#patch_local('file_rec', {
+\	'uiParams': {'ff': {'filterFloatingTitle': 'Filename'}},
 \	'sources': [{
 \		'name':'file_rec',
 \		'params': {
@@ -207,6 +226,10 @@ call ddu#custom#patch_local('file_rec', {
 
 call ddu#custom#patch_local('filer', {
 \	'ui': 'filer',
+\	'uiParams': {'filer': {
+\       'winRow': preview_row,
+\       'winHeight': preview_height,
+\   }},
 \	'sources': [
 \		{'name': 'file', 'params': {}},
 \	],
@@ -214,6 +237,7 @@ call ddu#custom#patch_local('filer', {
 \ })
 
 call ddu#custom#patch_local('grep', {
+\	'uiParams': {'ff': {'filterFloatingTitle': 'Text in Workspace'}},
 \	'sourceParams' : {
 \		'rg' : {
 \			'args': ['--column', '--no-heading', '--color', 'never', '-i'],
@@ -221,13 +245,112 @@ call ddu#custom#patch_local('grep', {
 \	 },
 \ })
 
+call ddu#custom#patch_local('lsp_definition', {
+\   'sync': v:true,
+\	'sources': [{
+\		'name':'lsp_definition',
+\		'params': {'method': 'textDocument/definition'},
+\	}],
+\   'uiParams': {'ff': {
+\       'immidiateAction': 'open',
+\       'filterFloatingTitle': 'Definition',
+\   }},
+\ })
+call ddu#custom#patch_local('lsp_declaration', {
+\   'sync': v:true,
+\	'sources': [{
+\		'name':'lsp_definition',
+\		'params': {'method': 'textDocument/declaration'},
+\	}],
+\   'uiParams': {'ff': {
+\       'immidiateAction': 'open',
+\       'filterFloatingTitle': 'Declaration',
+\   }},
+\ })
+call ddu#custom#patch_local('lsp_typeDefinition', {
+\   'sync': v:true,
+\	'sources': [{
+\		'name':'lsp_definition',
+\		'params': {'method': 'textDocument/typeDefinition'},
+\	}],
+\   'uiParams': {'ff': {
+\       'immidiateAction': 'open',
+\       'filterFloatingTitle': 'Type Definition',
+\   }},
+\ })
+call ddu#custom#patch_local('lsp_implementation', {
+\   'sync': v:true,
+\	'sources': [{
+\		'name':'lsp_definition',
+\		'params': {'method': 'textDocument/implementation'},
+\	}],
+\   'uiParams': {'ff': {
+\       'immidiateAction': 'open',
+\       'filterFloatingTitle': 'Implementation',
+\   }},
+\ })
+
+call ddu#custom#patch_local('references', {
+\   'uiParams': {'ff': {
+\       'immidiateAction': 'open',
+\       'filterFloatingTitle': 'References',
+\   }},
+\ })
+
+call ddu#custom#patch_local('codeAction', {
+\	'uiParams': {'ff': {'filterFloatingTitle': 'Code Actions'}},
+\ })
+
+call ddu#custom#patch_local('lsp_documentSymbol', {
+\	'sources': [{
+\		'name':'lsp_documentSymbol',
+\		'options': {'converters': ['converter_lsp_symbol']},
+\	}],
+\ })
+
+call ddu#custom#patch_local('lsp_workspaceSymbol', {
+\	'sources': [{
+\		'name':'lsp_workspaceSymbol',
+\		'options': {'volatile': v:true},
+\	}],
+\	'uiParams': {
+\		'ff': {'ignoreEmpty': v:false},
+\	},
+\ })
+
+call ddu#custom#patch_local('lsp_diagnostic', {
+\	'uiParams': {'ff': {'filterFloatingTitle': 'Diagnostics in Current Buffer'}},
+\	'sources': [{
+\		'name':'lsp_diagnostic',
+\		'params': {'buffer': 0},
+\	}],
+\ })
+
+call ddu#custom#patch_local('lsp_diagnosticAll', {
+\	'uiParams': {'ff': {'filterFloatingTitle': 'Diagnostics in All Buffers'}},
+\	'sources': [{
+\		'name':'lsp_diagnostic',
+\		'params': {'buffer': v:null},
+\	}],
+\ })
+
 " keymap
 cabbrev <expr> f getcmdtype() .. getcmdline() ==# ':f' ? [getchar(), ''][1] .. "Ddu line<cr>" : 'f'
-cabbrev <expr> fb getcmdtype() .. getcmdline() ==# ':fb' ? [getchar(), ''][1] .. "Ddu buffer -ui-param-ff-startFilter=v:false<cr>" : 'fb'
-cabbrev <expr> fr getcmdtype() .. getcmdline() ==# ':fr' ? [getchar(), ''][1] .. "Ddu register -ui-param-ff-startFilter=v:false<cr>" : 'fr'
+cabbrev <expr> fb getcmdtype() .. getcmdline() ==# ':fb' ? [getchar(), ''][1] .. "Ddu buffer -name=noFilter -ui-param-ff-startFilter=v:false<cr>" : 'fb'
+cabbrev <expr> fr getcmdtype() .. getcmdline() ==# ':fr' ? [getchar(), ''][1] .. "Ddu register -name=noFilter -ui-param-ff-startFilter=v:false<cr>" : 'fr'
 cabbrev <expr> fn getcmdtype() .. getcmdline() ==# ':fn' ? [getchar(), ''][1] .. "Ddu -name=file_rec<cr>" : 'fn'
 cabbrev <expr> ff getcmdtype() .. getcmdline() ==# ':ff' ? [getchar(), ''][1] .. "Ddu -name=filer<cr>" : 'ff'
-cabbrev <expr> fg getcmdtype() .. getcmdline() ==# ':fg' ? [getchar(), ''][1] .. "Ddu rg -name=grep -source-param-rg-input='.'<cr>" : 'fg'
+cabbrev <expr> fa getcmdtype() .. getcmdline() ==# ':fa' ? [getchar(), ''][1] .. "Ddu rg -name=grep -source-param-rg-input='.'<cr>" : 'fa'
+" for lsp
+cabbrev <expr> ld getcmdtype() .. getcmdline() ==# ':ld' ? [getchar(), ''][1] .. "Ddu -name=lsp_definition<cr>" : 'ld'
+cabbrev <expr> ldc getcmdtype() .. getcmdline() ==# ':ldc' ? [getchar(), ''][1] .. "Ddu -name=lsp_declaration<cr>" : 'ldc'
+cabbrev <expr> ldt getcmdtype() .. getcmdline() ==# ':ldt' ? [getchar(), ''][1] .. "Ddu -name=lsp_typeDefinition<cr>" : 'ldt'
+cabbrev <expr> lr getcmdtype() .. getcmdline() ==# ':lr' ? [getchar(), ''][1] .. "Ddu lsp_references -name=references<cr>" : 'lr'
+cabbrev <expr> la getcmdtype() .. getcmdline() ==# ':la' ? [getchar(), ''][1] .. "Ddu lsp_codeAction -name=codeAction<cr>" : 'la'
+cabbrev <expr> ls getcmdtype() .. getcmdline() ==# ':ls' ? [getchar(), ''][1] .. "Ddu -name=lsp_documentSymbol<cr>" : 'ls'
+cabbrev <expr> lsw getcmdtype() .. getcmdline() ==# ':lsw' ? [getchar(), ''][1] .. "Ddu -name=lsp_workspaceSymbol<cr>" : 'lsw'
+cabbrev <expr> lg getcmdtype() .. getcmdline() ==# ':lg' ? [getchar(), ''][1] .. "Ddu -name=lsp_diagnostic<cr>" : 'lg'
+cabbrev <expr> lga getcmdtype() .. getcmdline() ==# ':lga' ? [getchar(), ''][1] .. "Ddu -name=lsp_diagnosticAll<cr>" : 'lga'
 
 " FF
 autocmd FileType ddu-ff call s:ddu_ff_settings()
@@ -236,19 +359,18 @@ function! s:ddu_ff_settings() abort
 	nnoremap <buffer><silent> s <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
 	nnoremap <buffer><silent> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
 	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
+	nnoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
 	nnoremap <buffer><silent> <C-g> <Cmd>call ddu#ui#do_action('quit')<CR>
 endfunction
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
 	inoremap <buffer> <C-n> <Nop>
 	inoremap <buffer> <C-p> <Nop>
-	nnoremap <buffer> <CR> :q<CR>
-	nnoremap <buffer> q :q<CR>
-	inoremap <buffer> <CR> <ESC>:q<CR>
-	inoremap <buffer> jj <ESC>:q<CR>
-	inoremap <buffer> jk <ESC>:q<CR>
-	inoremap <buffer> kj <ESC>:q<CR>
-	inoremap <buffer> kk <ESC>:q<CR>
+	inoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
+	nnoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
+	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+	nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+	inoremap <buffer><silent> <CR> <ESC><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
 endfunction
 " filter
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()

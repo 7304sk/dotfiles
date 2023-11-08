@@ -98,26 +98,27 @@ hook_source = 'call coil398#init#coc#hook_source()'
 hook_add = '''
     let g:coc_global_extensions = [
         \'coc-actions',
-        \'coc-html',
-        \'coc-css',
-        \'coc-emmet',
-        \'coc-sql',
-        \'coc-sqlfluff',
-        \'coc-diagnostic', 
-        \'coc-eslint', 
-        \'coc-python', 
-        \'coc-git', 
-        \'coc-highlight',
-        \'coc-java', 
-        \'coc-sh', 
-        \'coc-json', 
         \'coc-lists', 
-        \'coc-markdownlint', 
+        \'coc-diagnostic', 
         \'coc-pairs', 
         \'coc-snippets', 
-        \'coc-tsserver', 
-        \'coc-yaml', 
+        \'coc-highlight',
         \'coc-copilot', 
+        \'coc-emmet',
+        \'coc-git', 
+        \'coc-sh', 
+        \'coc-json', 
+        \'coc-yaml', 
+        \'coc-html',
+        \'coc-css',
+        \'coc-sql',
+        \'coc-sqlfluff',
+        \'coc-eslint', 
+        \'coc-python', 
+        \'coc-java', 
+        \'coc-markdownlint', 
+        \'coc-tsserver', 
+        \'coc-phpls', 
     \]
 '''
 # copilot
@@ -205,6 +206,8 @@ repo = 'Shougo/ddu-source-register'
 repo = 'shun/ddu-source-rg'
 [[plugins]]
 repo = 'shun/ddu-source-buffer'
+[[plugins]]
+repo = 'uga-rosa/ddu-source-lsp'
 # kind
 [[plugins]]
 repo = 'Shougo/ddu-kind-file'
