@@ -23,17 +23,18 @@ filetype plugin indent on
 syntax enable
 
 if !exists('g:vscode')
+    " for IndentBlankline
     autocmd Colorscheme * highlight IndentBlanklineIndent1 guifg=#662121
     autocmd Colorscheme * highlight IndentBlanklineIndent2 guifg=#767621
     autocmd Colorscheme * highlight IndentBlanklineIndent3 guifg=#216631
     autocmd Colorscheme * highlight IndentBlanklineIndent4 guifg=#325a5e
     autocmd Colorscheme * highlight IndentBlanklineIndent5 guifg=#324b7b
     autocmd Colorscheme * highlight IndentBlanklineIndent6 guifg=#562155
+    " color theme
+    colorscheme codedark
     " 全角スペースを強調
     autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
     autocmd VimEnter * match FullWidthSpace /　/
-    " color theme
-    colorscheme codedark
 endif
 
 " Fern
@@ -97,6 +98,8 @@ nnoremap <silent> <leader>ct <Plug>(coc-type-definition)
 nnoremap <silent> <leader>ci <Plug>(coc-implementation)
 nnoremap <silent> <leader>cr <Plug>(coc-references)
 nnoremap <silent> <leader>cn <Plug>(coc-rename)
+nnoremap <silent> <leader>ca <Plug>(coc-codeaction-cursor)
+nnoremap <silent> <leader>cg :CocDiagnostics<cr>
 nnoremap <leader>cl :CocList<cr>
 
 " copilot
@@ -105,9 +108,9 @@ let g:copilot_filetypes = {
     \ 'markdown': v:true,
     \ 'yaml': v:true
     \ }
-" tab は coc.nvim で使っているので、copilot では Control-tab にする
+" tab は coc.nvim で使っているので、copilot では Shift-tab にする
 let g:copilot_no_tab_map = v:true
-imap <silent><script><expr> <C-tab> copilot#Accept("\<CR>")
+imap <silent><script><expr> <S-tab> copilot#Accept("\<CR>")
 
 " gitsessions.vim
 " auto load をそのままだとtreeSitter が効かないので、遅延実行する
@@ -117,11 +120,12 @@ call timer_start(1, {-> execute('GitSessionLoad')})
 " ddu
 let win_border = 'single'
 let win_height = '&lines - 8'
-let win_width = '&columns / 2 - 3'
+let win_width = '&columns - 4'
 let win_col = 1
 let win_row = 4
 let preview_row = 1
 let preview_height = '&lines - 5'
+let preview_width = '&columns / 2 - 3'
 let preview_col = '&columns / 2'
 call ddu#custom#patch_global({
 \	'ui': 'ff',
@@ -146,7 +150,7 @@ call ddu#custom#patch_global({
 \           'previewSplit': 'vertical',
 \			'previewFloatingBorder': win_border,
 \			'previewHeight': preview_height,
-\			'previewWidth': win_width,
+\			'previewWidth': preview_width,
 \			'previewRow': preview_row,
 \			'previewCol': preview_col,
 \		},
@@ -163,7 +167,7 @@ call ddu#custom#patch_global({
 \           'previewSplit': 'vertical',
 \			'previewFloatingBorder': win_border,
 \			'previewHeight': preview_height,
-\			'previewWidth': win_width,
+\			'previewWidth': preview_width,
 \			'previewRow': preview_row,
 \			'previewCol': preview_col,
 \		},
