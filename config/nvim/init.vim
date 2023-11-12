@@ -32,6 +32,12 @@ if !exists('g:vscode')
     autocmd Colorscheme * highlight IndentBlanklineIndent6 guifg=#562155
     " color theme
     colorscheme codedark
+    " 背景透過
+    highlight Normal guibg=none
+    highlight NonText guibg=none
+    highlight LineNr guibg=none
+    highlight Folded guibg=none
+    highlight EndOfBuffer guibg=none
     " 全角スペースを強調
     autocmd Colorscheme * highlight FullWidthSpace ctermbg=237 guibg=#3d3d40
     autocmd VimEnter * match FullWidthSpace /　/
