@@ -222,6 +222,12 @@ repo = 'ryota2357/ddu-column-icon_filename'
 
 #####################
 ### Other
+# noice
+[[plugins]]
+repo = 'folke/noice.nvim'
+depends = ['MunifTanjim/nui.nvim', 'rcarriga/nvim-notify']
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
 # notify
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
