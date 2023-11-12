@@ -169,7 +169,7 @@ nnoremap <leader>gb :G! -p branch -a<CR>
 " git diff
 nnoremap <leader>gd :Gdiffsplit<CR>
 " git switch
-nnoremap <leader>gw :G switch 
+nnoremap <leader>gw :G switch
 " git blame
 nnoremap <leader>gm :G blame<CR>
 " git log

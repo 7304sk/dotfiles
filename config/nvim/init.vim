@@ -128,133 +128,133 @@ let preview_height = '&lines - 5'
 let preview_width = '&columns / 2 - 3'
 let preview_col = '&columns / 2'
 call ddu#custom#patch_global({
-\	'ui': 'ff',
-\	'uiParams': {
-\		'ff': {
-\			'autoAction': { 'name': 'preview', 'delay': 0, },
-\			'startAutoAction': v:true,
-\			'ignoreEmpty': v:false,
-\			'split': 'floating',
-\			'prompt': '> ',
+\   'ui': 'ff',
+\   'uiParams': {
+\      'ff': {
+\           'autoAction': { 'name': 'preview', 'delay': 0, },
+\           'startAutoAction': v:true,
+\           'ignoreEmpty': v:false,
+\           'split': 'floating',
+\           'prompt': '> ',
 \           'cursorPos': 0,
-\			'startFilter': v:true,
-\			'filterSplitDirection': 'floating',
-\			'filterFloatingPosition': 'top',
+\           'startFilter': v:true,
+\           'filterSplitDirection': 'floating',
+\           'filterFloatingPosition': 'top',
 \           'filterFloatingTitle': 'Text in Current Buffer',
-\			'floatingBorder': win_border,
-\			'winHeight': win_height,
-\			'winWidth': win_width,
-\			'winRow': win_row,
-\			'winCol': win_col,
-\			'previewFloating': v:true,
+\           'floatingBorder': win_border,
+\           'winHeight': win_height,
+\           'winWidth': win_width,
+\           'winRow': win_row,
+\           'winCol': win_col,
+\           'previewFloating': v:true,
 \           'previewSplit': 'vertical',
-\			'previewFloatingBorder': win_border,
-\			'previewHeight': preview_height,
-\			'previewWidth': preview_width,
-\			'previewRow': preview_row,
-\			'previewCol': preview_col,
-\		},
-\		'filer': {
-\			'autoAction': { 'name': 'preview', 'delay': 0, },
-\			'startAutoAction': v:true,
-\			'split': 'floating',
-\			'floatingBorder': win_border,
-\			'winHeight': win_height,
-\			'winWidth': win_width,
-\			'winRow': win_row,
-\			'winCol': win_col,
-\			'previewFloating': v:true,
+\           'previewFloatingBorder': win_border,
+\           'previewHeight': preview_height,
+\           'previewWidth': preview_width,
+\           'previewRow': preview_row,
+\           'previewCol': preview_col,
+\       },
+\       'filer': {
+\           'autoAction': { 'name': 'preview', 'delay': 0, },
+\           'startAutoAction': v:true,
+\           'split': 'floating',
+\           'floatingBorder': win_border,
+\           'winHeight': win_height,
+\           'winWidth': win_width,
+\           'winRow': win_row,
+\           'winCol': win_col,
+\           'previewFloating': v:true,
 \           'previewSplit': 'vertical',
-\			'previewFloatingBorder': win_border,
-\			'previewHeight': preview_height,
-\			'previewWidth': preview_width,
-\			'previewRow': preview_row,
-\			'previewCol': preview_col,
-\		},
-\	},
-\	'sourceOptions': {
-\		'_': {
-\			'matchers': ['matcher_fzf'],
-\			'sorters': ['sorter_fzf'],
-\			'ignoreCase': v:true,
-\		},
-\		'file': {
-\			'columns': ['icon_filename'],
-\		},
-\		'line': {
-\			'sorters': [],
-\		},
-\	},
-\	'filterParams': {
-\		'matcher_fzf': {
-\			'highlightMatched': 'Search',
-\		},
-\	},
-\	'kindOptions': {
-\		'file': {
-\			'defaultAction': 'open',
-\		},
-\		'word': {
-\			'defaultAction': 'append',
-\		},
+\           'previewFloatingBorder': win_border,
+\           'previewHeight': preview_height,
+\           'previewWidth': preview_width,
+\           'previewRow': preview_row,
+\           'previewCol': preview_col,
+\       },
+\   },
+\   'sourceOptions': {
+\       '_': {
+\           'matchers': ['matcher_fzf'],
+\           'sorters': ['sorter_fzf'],
+\           'ignoreCase': v:true,
+\       },
+\       'file': {
+\           'columns': ['icon_filename'],
+\       },
+\       'line': {
+\           'sorters': [],
+\       },
+\   },
+\   'filterParams': {
+\       'matcher_fzf': {
+\           'highlightMatched': 'Search',
+\       },
+\   },
+\   'kindOptions': {
+\       'file': {
+\           'defaultAction': 'open',
+\       },
+\       'word': {
+\           'defaultAction': 'append',
+\       },
 \       'lsp': {
 \           'defaultAction': 'open',
 \       },
 \       'lsp_codeAction': {
 \           'defaultAction': 'apply',
 \       },
-\	},
-\	'actionOptions': {
-\		'narrow': {
-\			'quit': v:true,
-\		},
-\	},
+\   },
+\   'actionOptions': {
+\       'narrow': {
+\           'quit': v:true,
+\       },
+\   },
 \})
 
 call ddu#custom#patch_local('noFilter', {
-\	'uiParams': {'ff': {
+\   'uiParams': {'ff': {
 \       'winRow': preview_row,
 \       'winHeight': preview_height,
 \   }},
 \})
 
 call ddu#custom#patch_local('file_rec', {
-\	'uiParams': {'ff': {'filterFloatingTitle': 'Filename'}},
-\	'sources': [{
-\		'name':'file_rec',
-\		'params': {
-\			'ignoredDirectories': ['.git', 'var', 'node_modules', ]
-\		},
-\	}],
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Filename'}},
+\   'sources': [{
+\       'name':'file_rec',
+\       'params': {
+\           'ignoredDirectories': ['.git', 'var', 'node_modules', ]
+\       },
+\   }],
 \})
 
 call ddu#custom#patch_local('filer', {
-\	'ui': 'filer',
-\	'uiParams': {'filer': {
+\   'ui': 'filer',
+\   'uiParams': {'filer': {
 \       'winRow': preview_row,
 \       'winHeight': preview_height,
 \   }},
-\	'sources': [
-\		{'name': 'file', 'params': {}},
-\	],
-\	'resume': v:true,
+\   'sources': [
+\       {'name': 'file', 'params': {}},
+\   ],
+\   'resume': v:true,
 \ })
 
 call ddu#custom#patch_local('grep', {
-\	'uiParams': {'ff': {'filterFloatingTitle': 'Text in Workspace'}},
-\	'sourceParams' : {
-\		'rg' : {
-\			'args': ['--column', '--no-heading', '--color', 'never', '-i'],
-\		},
-\	 },
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Text in Workspace'}},
+\   'sourceParams' : {
+\       'rg' : {
+\           'args': ['--column', '--no-heading', '--color', 'never', '-i'],
+\       },
+\   },
 \ })
 
 call ddu#custom#patch_local('lsp_definition', {
 \   'sync': v:true,
-\	'sources': [{
-\		'name':'lsp_definition',
-\		'params': {'method': 'textDocument/definition'},
-\	}],
+\   'sources': [{
+\       'name':'lsp_definition',
+\       'params': {'method': 'textDocument/definition'},
+\   }],
 \   'uiParams': {'ff': {
 \       'immidiateAction': 'open',
 \       'filterFloatingTitle': 'Definition',
@@ -262,10 +262,10 @@ call ddu#custom#patch_local('lsp_definition', {
 \ })
 call ddu#custom#patch_local('lsp_declaration', {
 \   'sync': v:true,
-\	'sources': [{
-\		'name':'lsp_definition',
-\		'params': {'method': 'textDocument/declaration'},
-\	}],
+\   'sources': [{
+\       'name':'lsp_definition',
+\       'params': {'method': 'textDocument/declaration'},
+\   }],
 \   'uiParams': {'ff': {
 \       'immidiateAction': 'open',
 \       'filterFloatingTitle': 'Declaration',
@@ -273,10 +273,10 @@ call ddu#custom#patch_local('lsp_declaration', {
 \ })
 call ddu#custom#patch_local('lsp_typeDefinition', {
 \   'sync': v:true,
-\	'sources': [{
-\		'name':'lsp_definition',
-\		'params': {'method': 'textDocument/typeDefinition'},
-\	}],
+\   'sources': [{
+\       'name':'lsp_definition',
+\       'params': {'method': 'textDocument/typeDefinition'},
+\   }],
 \   'uiParams': {'ff': {
 \       'immidiateAction': 'open',
 \       'filterFloatingTitle': 'Type Definition',
@@ -284,10 +284,10 @@ call ddu#custom#patch_local('lsp_typeDefinition', {
 \ })
 call ddu#custom#patch_local('lsp_implementation', {
 \   'sync': v:true,
-\	'sources': [{
-\		'name':'lsp_definition',
-\		'params': {'method': 'textDocument/implementation'},
-\	}],
+\   'sources': [{
+\       'name':'lsp_definition',
+\       'params': {'method': 'textDocument/implementation'},
+\   }],
 \   'uiParams': {'ff': {
 \       'immidiateAction': 'open',
 \       'filterFloatingTitle': 'Implementation',
@@ -302,40 +302,40 @@ call ddu#custom#patch_local('references', {
 \ })
 
 call ddu#custom#patch_local('codeAction', {
-\	'uiParams': {'ff': {'filterFloatingTitle': 'Code Actions'}},
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Code Actions'}},
 \ })
 
 call ddu#custom#patch_local('lsp_documentSymbol', {
-\	'sources': [{
-\		'name':'lsp_documentSymbol',
-\		'options': {'converters': ['converter_lsp_symbol']},
-\	}],
+\   'sources': [{
+\       'name':'lsp_documentSymbol',
+\       'options': {'converters': ['converter_lsp_symbol']},
+\   }],
 \ })
 
 call ddu#custom#patch_local('lsp_workspaceSymbol', {
-\	'sources': [{
-\		'name':'lsp_workspaceSymbol',
-\		'options': {'volatile': v:true},
-\	}],
-\	'uiParams': {
-\		'ff': {'ignoreEmpty': v:false},
-\	},
+\   'sources': [{
+\       'name':'lsp_workspaceSymbol',
+\       'options': {'volatile': v:true},
+\   }],
+\  'uiParams': {
+\       'ff': {'ignoreEmpty': v:false},
+\   },
 \ })
 
 call ddu#custom#patch_local('lsp_diagnostic', {
-\	'uiParams': {'ff': {'filterFloatingTitle': 'Diagnostics in Current Buffer'}},
-\	'sources': [{
-\		'name':'lsp_diagnostic',
-\		'params': {'buffer': 0},
-\	}],
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Diagnostics in Current Buffer'}},
+\   'sources': [{
+\       'name':'lsp_diagnostic',
+\       'params': {'buffer': 0},
+\   }],
 \ })
 
 call ddu#custom#patch_local('lsp_diagnosticAll', {
-\	'uiParams': {'ff': {'filterFloatingTitle': 'Diagnostics in All Buffers'}},
-\	'sources': [{
-\		'name':'lsp_diagnostic',
-\		'params': {'buffer': v:null},
-\	}],
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Diagnostics in All Buffers'}},
+\   'sources': [{
+\       'name':'lsp_diagnostic',
+\       'params': {'buffer': v:null},
+\   }],
 \ })
 
 " keymap
@@ -359,49 +359,49 @@ cabbrev <expr> lga getcmdtype() .. getcmdline() ==# ':lga' ? [getchar(), ''][1] 
 " FF
 autocmd FileType ddu-ff call s:ddu_ff_settings()
 function! s:ddu_ff_settings() abort
-	nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR>
-	nnoremap <buffer><silent> s <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-	nnoremap <buffer><silent> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
-	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
-	nnoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
-	nnoremap <buffer><silent> <C-g> <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR>
+    nnoremap <buffer><silent> s <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <C-g> <Cmd>call ddu#ui#do_action('quit')<CR>
 endfunction
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
-	inoremap <buffer> <C-n> <Nop>
-	inoremap <buffer> <C-p> <Nop>
-	inoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
-	nnoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
-	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
-	nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
-	inoremap <buffer><silent> <CR> <ESC><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+    inoremap <buffer> <C-n> <Nop>
+    inoremap <buffer> <C-p> <Nop>
+    inoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <esc> <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+    nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+    inoremap <buffer><silent> <CR> <ESC><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
 endfunction
 " filter
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
-	nnoremap <buffer><silent><expr> <CR>
-	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#filer#do_action('expandItem', {'mode': 'toggle'})<CR>" :
-	\		"<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
-	nnoremap <buffer><silent><expr> h
-	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" :
-	\		"<Cmd>call ddu#ui#filer#do_action('preview')<CR>"
-	nnoremap <buffer><silent><expr> l
-	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" :
-	\		"<Cmd>call ddu#ui#filer#do_action('preview')<CR>"
-	nnoremap <buffer><silent> j j<Cmd>call ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> k k<Cmd>cal ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> <C-d> <C-d><Cmd>cal ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> <C-u> <C-u><Cmd>cal ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
-	nnoremap <buffer><silent> cp <Cmd>call ddu#ui#do_action('itemAction', {'name': 'copy'})<CR>
-	nnoremap <buffer><silent> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
-	nnoremap <buffer><silent> rm <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
-	nnoremap <buffer><silent> mv <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
-	nnoremap <buffer><silent> cu <Cmd>call ddu#ui#do_action('itemAction', {'name': 'move'})<CR>
-	nnoremap <buffer><silent> to <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>
-	nnoremap <buffer><silent> mk <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>
-	nnoremap <buffer><silent> yy <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
+    nnoremap <buffer><silent><expr> <CR>
+    \   ddu#ui#get_item()->get('isTree', v:false) ?
+    \       "<Cmd>call ddu#ui#filer#do_action('expandItem', {'mode': 'toggle'})<CR>" :
+    \       "<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
+    nnoremap <buffer><silent><expr> h
+    \   ddu#ui#get_item()->get('isTree', v:false) ?
+    \       "<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" :
+    \       "<Cmd>call ddu#ui#filer#do_action('preview')<CR>"
+    nnoremap <buffer><silent><expr> l
+    \   ddu#ui#get_item()->get('isTree', v:false) ?
+    \       "<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" :
+    \       "<Cmd>call ddu#ui#filer#do_action('preview')<CR>"
+    nnoremap <buffer><silent> j j<Cmd>call ddu#ui#do_action('preview')<CR>
+    nnoremap <buffer><silent> k k<Cmd>cal ddu#ui#do_action('preview')<CR>
+    nnoremap <buffer><silent> <C-d> <C-d><Cmd>cal ddu#ui#do_action('preview')<CR>
+    nnoremap <buffer><silent> <C-u> <C-u><Cmd>cal ddu#ui#do_action('preview')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> cp <Cmd>call ddu#ui#do_action('itemAction', {'name': 'copy'})<CR>
+    nnoremap <buffer><silent> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
+    nnoremap <buffer><silent> rm <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
+    nnoremap <buffer><silent> mv <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
+    nnoremap <buffer><silent> cu <Cmd>call ddu#ui#do_action('itemAction', {'name': 'move'})<CR>
+    nnoremap <buffer><silent> to <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>
+    nnoremap <buffer><silent> mk <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>
+    nnoremap <buffer><silent> yy <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
 endfunction
