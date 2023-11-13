@@ -149,14 +149,14 @@ call timer_start(1, {-> execute('GitSessionLoad')})
 
 " ddu
 let win_border = 'single'
-let win_height = '&lines - 8'
+let win_height = '&lines - 7'
 let win_width = '&columns - 4'
 let win_col = 1
 let win_row = 4
 let preview_row = 1
-let preview_height = '&lines - 5'
+let preview_height = '&lines - 4'
 let preview_width = '&columns / 2 - 3'
-let preview_col = '&columns / 2'
+let preview_col = '&columns / 2 + 1'
 call ddu#custom#patch_global({
 \   'ui': 'ff',
 \   'uiParams': {
