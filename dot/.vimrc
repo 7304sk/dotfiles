@@ -103,17 +103,17 @@ xnoremap <leader>8 *
 " 全選択
 nnoremap <leader>a ggVG
 " undo, redo
-nnoremap <leader>z :undo<CR>
-nnoremap <leader>y :redo<CR>
+nnoremap <silent> <leader>z :undo<CR>
+nnoremap <silent> <leader>y :redo<CR>
 " 検索を解除
 nnoremap <silent> <leader>q :<C-u>nohlsearch<CR><C-l>
 " バッファ移動
-nnoremap <leader>b :bp<CR>
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>x :bd<CR>
+nnoremap <silent> <leader>b :bp<CR>
+nnoremap <silent> <leader>n :bn<CR>
+nnoremap <silent> <leader>x :bd<CR>
 " ペイン分割
-nnoremap <leader>\ :vs<CR>
-nnoremap <leader>- :sp<CR>
+nnoremap <silent> <leader>\ :vs<CR>
+nnoremap <silent> <leader>- :sp<CR>
 " ペイン移動
 nnoremap <leader><Left> <C-w><Left>
 nnoremap <leader><Down> <C-w><Down>
@@ -126,7 +126,7 @@ nnoremap <leader>l <C-w><Right>
 
 """""""""" プラグイン関連
 """"" Fern
-nnoremap <leader><leader> :Fern . -reveal=% -drawer -toggle -width=50<CR>
+nnoremap <silent> <leader><leader> :Fern . -reveal=% -drawer -toggle -width=50<CR>
 cabbrev fe :Fern . -reveal=% -drawer -toggle -width=50
 """"" CoC
 " Use <c-space> to trigger completion.
@@ -134,7 +134,7 @@ inoremap <silent><expr> <C-Space> coc#refresh()
 " CoCの入力補完をEnterで決定
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
         \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" <Tab>で次、<S+Tab>で前
+" <Tab>で次
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -143,7 +143,6 @@ inoremap <silent><expr> <TAB>
   \ coc#pum#visible() ? coc#pum#next(1):
   \ <SID>check_back_space() ? "\<Tab>" :
   \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>" " "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <silent> <tab> :call CocAction('doHover')<CR>
 """"" Markdown
