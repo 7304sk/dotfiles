@@ -147,6 +147,14 @@ imap <silent><script><expr> <S-tab> copilot#Accept("\<CR>")
 let g:gitsessions_disable_auto_load = 1
 call timer_start(1, {-> execute('GitSessionLoad')})
 
+" memolist
+let g:memolist_path = expand("$MEMO_ROOT")
+let g:memolist_memo_suffix = "md"
+cabbrev <expr> mn getcmdtype() .. getcmdline() ==# ':mn' ? [getchar(), ''][1] .. "MemoNew<cr>" : 'mn'
+" cabbrev <expr> ml getcmdtype() .. getcmdline() ==# ':ml' ? [getchar(), ''][1] .. "MemoList<cr>" : 'ml'
+cabbrev <expr> ml getcmdtype() .. getcmdline() ==# ':ml' ? [getchar(), ''][1] .. "Ddu -name=memo_file<cr>" : 'ml'
+cabbrev <expr> mg getcmdtype() .. getcmdline() ==# ':mg' ? [getchar(), ''][1] .. "Ddu rg -name=memogrep<cr>" : 'mg'
+
 " ddu
 let win_border = 'single'
 let win_height = '&lines - 7'
@@ -258,6 +266,12 @@ call ddu#custom#patch_local('file_rec', {
 \   }],
 \})
 
+call ddu#custom#patch_local('memo_file', {
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Memos'}},
+\   'sources': [{ 'name':'file' }],
+\   'sourceOptions': { 'file': {'path': expand('$HOME/memo') } },
+\})
+
 call ddu#custom#patch_local('filer', {
 \   'ui': 'filer',
 \   'uiParams': {'filer': {
@@ -275,6 +289,18 @@ call ddu#custom#patch_local('grep', {
 \   'sourceParams' : {
 \       'rg' : {
 \           'args': ['--column', '--no-heading', '--color', 'never', '-i'],
+\           'input': '.',
+\       },
+\   },
+\ })
+
+call ddu#custom#patch_local('memogrep', {
+\   'uiParams': {'ff': {'filterFloatingTitle': 'Text in Memo'}},
+\   'sourceParams' : {
+\       'rg' : {
+\           'args': ['--column', '--no-heading', '--color', 'never', '-i'],
+\           'input': '.',
+\           'paths': [expand('$HOME/memo')],
 \       },
 \   },
 \ })
@@ -374,7 +400,7 @@ cabbrev <expr> fb getcmdtype() .. getcmdline() ==# ':fb' ? [getchar(), ''][1] ..
 cabbrev <expr> fr getcmdtype() .. getcmdline() ==# ':fr' ? [getchar(), ''][1] .. "Ddu register -name=noFilter -ui-param-ff-startFilter=v:false<cr>" : 'fr'
 cabbrev <expr> fn getcmdtype() .. getcmdline() ==# ':fn' ? [getchar(), ''][1] .. "Ddu -name=file_rec<cr>" : 'fn'
 cabbrev <expr> ff getcmdtype() .. getcmdline() ==# ':ff' ? [getchar(), ''][1] .. "Ddu -name=filer<cr>" : 'ff'
-cabbrev <expr> fa getcmdtype() .. getcmdline() ==# ':fa' ? [getchar(), ''][1] .. "Ddu rg -name=grep -source-param-rg-input='.'<cr>" : 'fa'
+cabbrev <expr> fa getcmdtype() .. getcmdline() ==# ':fa' ? [getchar(), ''][1] .. "Ddu rg -name=grep<cr>" : 'fa'
 " for lsp
 cabbrev <expr> ld getcmdtype() .. getcmdline() ==# ':ld' ? [getchar(), ''][1] .. "Ddu -name=lsp_definition<cr>" : 'ld'
 cabbrev <expr> ldc getcmdtype() .. getcmdline() ==# ':ldc' ? [getchar(), ''][1] .. "Ddu -name=lsp_declaration<cr>" : 'ldc'
