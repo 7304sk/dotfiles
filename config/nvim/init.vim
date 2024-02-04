@@ -57,16 +57,12 @@ augroup fern-settings
 augroup END
 
 " TreeSitter
-" markdown は conceal の設定が気に食わないのでオフにする
 lua <<EOF
 if vim.fn.exists("g:vscode") ~= 1 then
     require'nvim-treesitter.configs'.setup {
         ensure_installed = 'all',
         highlight = {
             enable = true,
-            disable = {
-                'markdown'
-            }
         },
     }
     -- noice
