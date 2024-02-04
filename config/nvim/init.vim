@@ -149,7 +149,9 @@ let g:memolist_memo_suffix = "md"
 cabbrev <expr> mn getcmdtype() .. getcmdline() ==# ':mn' ? [getchar(), ''][1] .. "MemoNew<cr>" : 'mn'
 " cabbrev <expr> ml getcmdtype() .. getcmdline() ==# ':ml' ? [getchar(), ''][1] .. "MemoList<cr>" : 'ml'
 cabbrev <expr> ml getcmdtype() .. getcmdline() ==# ':ml' ? [getchar(), ''][1] .. "Ddu -name=memo_file<cr>" : 'ml'
-cabbrev <expr> mg getcmdtype() .. getcmdline() ==# ':mg' ? [getchar(), ''][1] .. "Ddu rg -name=memogrep<cr>" : 'mg'
+cabbrev <expr> mg getcmdtype() .. getcmdline() ==# ':mg' ? [getchar(), ''][1] .. "Ddu rg -name=memogrep -source-param-rg-input='.'<cr>" : 'mg'
+cabbrev <expr> mt getcmdtype() .. getcmdline() ==# ':mt' ? [getchar(), ''][1] .. "Ddu rg -name=memogrep -source-param-rg-input='tags: '<cr>" : 'mt'
+cabbrev <expr> mc getcmdtype() .. getcmdline() ==# ':mc' ? [getchar(), ''][1] .. "Ddu rg -name=memogrep -source-param-rg-input='categories: '<cr>" : 'mc'
 
 " ddu
 let win_border = 'single'
@@ -295,7 +297,6 @@ call ddu#custom#patch_local('memogrep', {
 \   'sourceParams' : {
 \       'rg' : {
 \           'args': ['--column', '--no-heading', '--color', 'never', '-i'],
-\           'input': '.',
 \           'paths': [expand('$HOME/memo')],
 \       },
 \   },
