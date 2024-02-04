@@ -91,6 +91,22 @@ function rep -d "find ghq repositories"
     end
 end
 
+function memo -d "make memo with vim"
+    set -l save_current_dir (pwd)
+    cd $MEMO_ROOT
+    vi
+    # git 管理している場合自動でコミット
+    if git rev-parse 2> /dev/null
+        git add -A
+        git commit -m "update memo: $(date '+%Y-%m-%dT%H:%M:%S')"
+        # remote もある場合は自動で push まで
+        if test -n "$(git remote -v)"
+            git push
+        end
+    end
+    cd $save_current_dir
+end
+
 #### Mac
 function bupdate
     set_color yellow; and echo '>>> Update homebrew'; and set_color normal
@@ -102,6 +118,7 @@ function bupdate
     set_color yellow; and echo '>>> System check'; and set_color normal
     brew doctor
 end
+
 #### other
 function cleanjs -d "Minimize javascript"
     argparse -n cleanjs 'o/output=' -- $argv

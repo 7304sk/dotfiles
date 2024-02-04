@@ -13,6 +13,7 @@ abbr -a ...     cd ../../../
 abbr -a h       thistory
 abbr -a fda     fd --all 99
 abbr -a home    cd $WORK_HOME
+abbr -a m       memo
 abbr -a wi      which
 abbr -a s       source
 abbr -a c       clear

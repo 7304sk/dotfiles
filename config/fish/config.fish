@@ -20,6 +20,7 @@ set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse
     --color=marker:#ad95c4,spinner:#b7ba7e,header:#D39B76'
 set -xg FZF_TMUX_OPTS '-p 80%'
 set -xg VOLTA_HOME $HOME/.volta
+set -xg MEMO_ROOT $HOME/memo
 
 
 #! load configurations
