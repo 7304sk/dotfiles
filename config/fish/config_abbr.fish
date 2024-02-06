@@ -42,6 +42,8 @@ abbr -a g       git
 abbr -a gi      git init
 abbr -a ga      git add -A
 abbr -a gc      git commit
+abbr -a gca     git commit --amend
+abbr -a gce     git commit --allow-empty
 abbr -a gp      git push
 abbr -a gpf     git push --force-with-lease --force-if-includes
 abbr -a gpl     git pull origin
@@ -78,4 +80,4 @@ abbr -a t       tmux
 abbr -a ta      tmux a
 abbr -a td      tmux detach
 abbr -a tl      tmux ls
-abbr 0a tk      tmux kill-server
+abbr -a tk      tmux kill-server
