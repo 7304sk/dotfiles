@@ -126,7 +126,7 @@ nnoremap <leader>l <C-w><Right>
 
 """""""""" プラグイン関連
 """"" Fern
-nnoremap <silent> <leader><leader> :Fern . -reveal=% -drawer -toggle -width=50<CR>
+nnoremap <silent> <leader>f :Fern . -reveal=% -drawer -toggle -width=50<CR>
 cabbrev fe :Fern . -reveal=% -drawer -toggle -width=50
 """"" CoC
 " Use <c-space> to trigger completion.
@@ -189,6 +189,4 @@ nnoremap <leader>] <Plug>(edgemotion-j)
 xnoremap <leader>] <Plug>(edgemotion-j)
 nnoremap <leader>[ <Plug>(edgemotion-k)
 xnoremap <leader>[ <Plug>(edgemotion-k)
-""""" jumpcursor
-nnoremap <leader>f <Plug>(jumpcursor-jump)
 

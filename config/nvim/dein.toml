@@ -174,6 +174,9 @@ repo = 'chaoren/vim-wordmotion'
 # w,b が行を跨がない
 [[plugins]]
 repo = 'yutkat/wb-only-current-line.nvim'
+# easymotion
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
 # jump cursor
 [[plugins]]
 repo = 'skanehira/jumpcursor.vim'
