@@ -43,6 +43,14 @@ set noerrorbells visualbell t_vb=
 set clipboard+=unnamedplus
 set mouse=a
 set whichwrap=b,s,h,l,<,>,[,]
+" guicursor
+set guicursor=n:block
+set guicursor+=i-c-ci-ve-sm:ver25
+set guicursor+=r-cr:hor15
+set guicursor+=v:hor30
+set guicursor+=o:hor50
+set guicursor+=a:blinkwait700-blinkon600-blinkoff200
+" undo
 if has('persistent_undo')
   set undodir=$HOME/.vi_undo
   set undofile

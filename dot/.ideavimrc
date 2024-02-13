@@ -1,2 +1,5 @@
 source ~/.vimrc
 set easymotion
+set quickscope
+set keep-english-in-normal
+
