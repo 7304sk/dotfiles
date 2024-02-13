@@ -5,11 +5,11 @@ end
 
 function fd -d 'continuous cd forwards'
     set -lu _from (pwd)
-    set -lu _to $(find . -maxdepth 1 -type d 2> /dev/null | fzf-tmux -p 80% +m --preview 'ls -Fa {}')
+    set -lu _to $(find . -maxdepth 1 -type d 2> /dev/null | fzf-tmux -p 80% +m --preview 'ls -a {}')
 
     while test -n "$_to"; and test "$_to" != "."
         cd $_to
-        set _to $(find . -maxdepth 1 -type d 2> /dev/null | fzf-tmux -p 80% +m --preview 'ls -Fa {}')
+        set _to $(find . -maxdepth 1 -type d 2> /dev/null | fzf-tmux -p 80% +m --preview 'ls -a {}')
     end
 
     if test $_from != (pwd)
@@ -22,7 +22,7 @@ function fd -d 'continuous cd forwards'
 end
 
 function bd -d 'cd backwards'
-	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | fzf-tmux -p 80% +m --preview 'ls -Fa {}' | read -l result
+	pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | fzf-tmux -p 80% +m --preview 'ls -a {}' | read -l result
     if test -n "$result"
         set -lu from (pwd)
         cd $result
@@ -80,7 +80,7 @@ function db -d "Fuzzy-find and delete branches"
 end
 
 function rep -d "find ghq repositories"
-    set -l __src $(ghq list | fzf-tmux -p 80% --preview "ls -alFgx $(ghq root)/{}")
+    set -l __src $(ghq list | fzf-tmux -p 80% --preview "ls -algx $(ghq root)/{}")
     set -l __target "$(ghq root)/$__src"
     if test -d $__target; and test "$__src" != ""
         cd $__target
