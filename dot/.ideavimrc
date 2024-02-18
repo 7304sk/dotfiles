@@ -3,3 +3,32 @@ set easymotion
 set quickscope
 set keep-english-in-normal
 
+"""""" set keymap
+" IDE の検索機能を使用
+nnoremap / :<C-u>action Find<CR>
+nnoremap g/ /
+" C-hjkl でウィンドウ移動
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+"  LSP 系
+nnoremap <leader>gd :<C-u>action GotoDeclaration<CR>
+nnoremap <leader>gy :<C-u>action GotoTypeDefinition<CR>
+nnoremap <leader>gi :<C-u>action GotoImplementation<CR>
+nnoremap <leader>gs :<C-u>action GotoSuperMethod<CR>
+nnoremap <leader>gt :<C-u>action GotoTest<CR>
+nnoremap <leader><tab> :<C-u>action ShowHoverInfo<CR>
+" 実行
+nnoremap \r :action RunClass<cr>
+nnoremap \R :action Run<cr>
+nnoremap \d :action DebugClass<cr>
+nnoremap \D :action Debug<cr>
+" その他
+nnoremap <leader>X :action ReopenClosedTab<cr>
+nnoremap <leader>q :action CloseAllEditorsButActive<cr>
+nnoremap <leader>Q :action CloseAllEditors<cr>
+nnoremap <leader>f :action Switcher<cr>
+nnoremap <leader>t :action FileStructurePopup<cr>
+nnoremap <leader>p :action ToggleLineBreakpoint<cr>
+nnoremap <leader>oi :action OptimizeImports<cr>
