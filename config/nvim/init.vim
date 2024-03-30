@@ -118,16 +118,6 @@ let g:vim_markdown_conceal = 0
 let g:tex_conceal = ""
 let g:vim_markdown_math = 1
 
-" coc.nvim
-nnoremap <silent> <leader>cd <Plug>(coc-definition)
-nnoremap <silent> <leader>ct <Plug>(coc-type-definition)
-nnoremap <silent> <leader>ci <Plug>(coc-implementation)
-nnoremap <silent> <leader>cr <Plug>(coc-references)
-nnoremap <silent> <leader>cn <Plug>(coc-rename)
-nnoremap <silent> <leader>ca <Plug>(coc-codeaction-cursor)
-nnoremap <silent> <leader>cg :CocDiagnostics<cr>
-nnoremap <leader>cl :CocList<cr>
-
 " copilot
 let g:copilot_filetypes = {
     \ 'gitcommit': v:true,

@@ -1,34 +1,58 @@
-source ~/.vimrc
+"""""""""" load vimrc
+source ~/dotfiles/dot/vimrc/option.vimrc
+source ~/dotfiles/dot/vimrc/keymap.vimrc
+source ~/dotfiles/dot/vimrc/abbreviation.vimrc
+
+" enable plugins
 set easymotion
-set quickscope
 set keep-english-in-normal
 
-"""""" set keymap
-" IDE の検索機能を使用
-nnoremap / :<C-u>action Find<CR>
-nnoremap g/ /
-" C-hjkl でウィンドウ移動
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+"""""""""" set keymap
 "  LSP 系
-nnoremap <leader>gd :<C-u>action GotoDeclaration<CR>
-nnoremap <leader>gy :<C-u>action GotoTypeDefinition<CR>
-nnoremap <leader>gi :<C-u>action GotoImplementation<CR>
-nnoremap <leader>gs :<C-u>action GotoSuperMethod<CR>
-nnoremap <leader>gt :<C-u>action GotoTest<CR>
-nnoremap <leader><tab> :<C-u>action ShowHoverInfo<CR>
+nmap td :action GotoDeclaration<CR>
+nmap ty :action GotoTypeDefinition<CR>
+nmap ti :action GotoImplementation<CR>
+nmap ts :action GotoSuperMethod<CR>
+nmap tt :action GotoTest<CR>
+nmap <tab> :action ShowHoverInfo<CR>
 " 実行
 nnoremap \r :action RunClass<cr>
 nnoremap \R :action Run<cr>
 nnoremap \d :action DebugClass<cr>
 nnoremap \D :action Debug<cr>
 " その他
-nnoremap <leader>X :action ReopenClosedTab<cr>
-nnoremap <leader>q :action CloseAllEditorsButActive<cr>
-nnoremap <leader>Q :action CloseAllEditors<cr>
-nnoremap <leader>f :action Switcher<cr>
-nnoremap <leader>t :action FileStructurePopup<cr>
-nnoremap <leader>p :action ToggleLineBreakpoint<cr>
-nnoremap <leader>oi :action OptimizeImports<cr>
+nnoremap <space><space>r :source ~/.ideavimrc<cr>
+nnoremap <space>q :action CloseAllEditorsButActive<cr>
+nnoremap <space>Q :action ReopenClosedTab<cr>
+nnoremap <space>f :action Switcher<cr>
+nnoremap <space>t :action FileStructurePopup<cr>
+nnoremap <space>p :action ToggleLineBreakpoint<cr>
+nnoremap <space>i :action OptimizeImports<cr>
+""""" easymotion
+" 設定
+let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF' " ジャンプマーカーに使うキー
+let g:EasyMotion_use_upper = 1              " 視認性向上のため大文字で表示するか
+let g:EasyMotion_do_mapping = 0             " デフォルトのキーマッピングを有効化するか
+let g:EasyMotion_smartcase = 1              " 検索時に大文字小文字を区別しないか
+let g:EasyMotion_startofline = 0            " 行頭に移動するかどうか
+let g:EasyMotion_enter_jump_first = 1       " enter で最初の候補にジャンプするか
+" 既存の f を置き換え
+map f <Plug>(easymotion-bd-fl)
+map F <Plug>(easymotion-bd-tl)
+" Find motion
+nmap ss <Plug>(easymotion-s2)
+xmap ss <Plug>(easymotion-s2)
+omap zz <Plug>(easymotion-s2)
+" Line motion
+map sj <Plug>(easymotion-j)
+map sk <Plug>(easymotion-k)
+" Word motion
+map sw <Plug>(easymotion-bd-w)
+map sW <Plug>(easymotion-bd-W)
+map se <Plug>(easymotion-bd-e)
+map sE <Plug>(easymotion-bd-E)
+" Search motion
+nmap s/ <Plug>(easymotion-sn)
+xmap s/ <Plug>(easymotion-sn)
+omap s/ <Plug>(easymotion-tn)
+

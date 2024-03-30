@@ -234,9 +234,6 @@ repo = 'MunifTanjim/nui.nvim'
 # notify
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
-# f コマンドの補助ハイライト
-[[plugins]]
-repo = 'unblevable/quick-scope'
 # 単語ハイライト
 [[plugins]]
 repo = 'RRethy/vim-illuminate'
