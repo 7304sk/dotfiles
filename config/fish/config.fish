@@ -11,6 +11,7 @@ set -xg LANG ja_JP.UTF-8
 set -xg GREP_OPTIONS '--color=auto'
 set -xg PYTHONPATH $HOME/__pylib__ $PYTHONPATH
 set -xg RUNEWIDTH_EASTASIAN 0
+set -xg EDITOR nvim
 set -xg FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 set -xg FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
 set -xg FZF_DEFAULT_OPTS '--height 30% --layout=reverse

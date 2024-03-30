@@ -75,9 +75,8 @@ abbr -a dcp     docker-compose
 abbr -a dcpb    docker-compose build
 abbr -a dcpu    docker-compose up -d
 abbr -a dcpd    docker-compose down
-#tmux
-abbr -a t       tmux
-abbr -a ta      tmux a
-abbr -a td      tmux detach
-abbr -a tl      tmux ls
-abbr -a tk      tmux kill-server
+# tmux
+abbr -a tm      tmux
+# other
+abbr -a t       tig --all
+
